@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.3)  2 DEC 2016 12:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.3)  2 DEC 2016 12:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -583,7 +583,7 @@ LaTeX Font Warning: Font shape `T1/cmr/bx/n' in size <24> not available
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 112.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 114.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
@@ -601,7 +601,7 @@ Package epstopdf Info: Source file: <Diagrams/uml.eps>
 (epstopdf)                    size: 69483 bytes
 (epstopdf)             Command: <repstopdf --outfile=Diagrams/uml-eps-converted
 -to.pdf Diagrams/uml.eps>
-(epstopdf)             \includegraphics on input line 117.
+(epstopdf)             \includegraphics on input line 119.
 Package epstopdf Info: Output file is already uptodate.
 
 <Diagrams/uml-eps-converted-to.pdf, id=81, 1387.1825pt x 476.78125pt>
@@ -609,16 +609,16 @@ File: Diagrams/uml-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Diagrams/uml-eps-converted-to.pdf>
 Package pdftex.def Info: Diagrams/uml-eps-converted-to.pdf used on input line 1
-17.
+19.
 (pdftex.def)             Requested size: 465.06004pt x 159.84093pt.
-
-(./CSCI446_project4_design_report_group21.bbl [2])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 127.
+ [2]
+(./CSCI446_project4_design_report_group21.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 129.
  [3 <./Diagrams/uml-eps-converted-to.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 127.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 129.
  (./CSCI446_project4_design_report_group21.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 127.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 127.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 129.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 129.
 Package rerunfilecheck Info: File `CSCI446_project4_design_report_group21.out' 
 has not changed.
 (rerunfilecheck)             Checksum: A39FB4D02A463034D9856BA26D034A4F;673.
@@ -627,16 +627,16 @@ has not changed.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.88pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 127.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 129.
  ) 
 Here is how much of TeX's memory you used:
- 10060 strings out of 493029
- 153373 string characters out of 6136234
- 386030 words of memory out of 5000000
+ 10068 strings out of 493029
+ 153459 string characters out of 6136234
+ 387030 words of memory out of 5000000
  13351 multiletter control sequences out of 15000+600000
- 20698 words of font info for 83 fonts, out of 8000000 for 9000
+ 20930 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,11n,43p,605b,434s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,10n,43p,949b,388s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
@@ -654,7 +654,7 @@ ic/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200
 .pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/tex
 mf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/publi
 c/cm-super/sftt1000.pfb>
-Output written on CSCI446_project4_design_report_group21.pdf (3 pages, 304615 b
+Output written on CSCI446_project4_design_report_group21.pdf (3 pages, 307800 b
 ytes).
 PDF statistics:
  166 PDF objects out of 1000 (max. 8388607)

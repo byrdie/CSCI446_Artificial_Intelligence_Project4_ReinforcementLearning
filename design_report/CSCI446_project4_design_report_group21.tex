@@ -113,7 +113,7 @@
 	\section{Software Design}
 	For this project we will be using an environment and agent model similar to the wumpus world. Instead of a board we will have a \texttt{Track} class that reads in the different tracks from a text file. To run the experiments we will have an \texttt{Environment Engine} for each \texttt{Track} and \texttt{Agent} combo. 
 	
-	The \texttt{Agent} will be a virtual class that contains data such as the max acceleration values. It will also contain the virtual method \texttt{learn}. Each concrete class will be the implementation of our reinforcement learners. Each of these classes will contain an overridden learn method and algorithm specific functionality. The key difference between the wumpus world \texttt{Agent} and this \texttt{Agent} is the fact that in this case the \texttt{Agent} can see the whole board from the start.
+	The \texttt{Agent} will be a virtual class that contains data such as the max acceleration values. It will also contain the virtual method \texttt{learn}. Each concrete class will be the implementation of our reinforcement learners. Each of these classes will contain an overridden learn method and algorithm specific functionality. They will also have different interpretations of the track as each state will need to hold different values depending on what algorithm is being implemented. The key difference between the wumpus world \texttt{Agent} and this \texttt{Agent} is the fact that in this case the \texttt{Agent} gets a copy of the whole track rather than just percepts.
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.99\textwidth]{Diagrams/uml}
