@@ -83,7 +83,20 @@
 	\section{Introduction}
 	\section{The Racetrack Problem}
 	\section{Reinforcement Learning Algorithms}
-		\subsection{Value Iteration}
+	\section{Value Iteration}
+	\subsection{Value Iteration}
+	\textit{Value iteration} is a sequential reinforcement learning method for determining the optimal policy for a Markov decision process(MDP)\cite{Yu2013}. The algorithm calculates the utility for all of the states and then uses these utility values to determine the optimal action $a$ for each state $s$. To calculate utility we will be using the \textit{Bellman equation} as described in \cite{ai}. The equation is given as
+	
+	\begin{equation}
+		U(s) = R(s) + \gamma \max_{a \in A(s)}\sum_{s'} P(s'|s,a)U(s')
+	\end{equation}
+	where R(s) is the reward for the current state, $s'$ is the next state, and $P(s'|s,a)$ is the probability of being in state $s'$ given an action $a$ in state $s$. $\gamma$ is used to tweak how much weight we put on the expected next states utility values for calculating the current states utility value.
+	
+	\textit{Value iteration} uses this equation to iteratively propagate utilities and actions to each state. To start each state is given a random utility, though each state still has a unique reward value with the goal states having high reward. We then iterate over every state, recalculating each states utility. We keep looping through the states until two full loops through the states do not result in a change of utility for any of the the states. We can then assign optimal actions for each state depending on that states utility.
+	
+	\subsection{Design Implications}
+		We will need to have some type of data structure for keeping the representation of our track, with space for each states reward values, utility values, and the optimal action. We can either use a large dimension array to hold these values or several three dimensional arrays for each value. In addition we should make $\gamma$ tunable to see how that alters training time and results. We will also have to implement a way to handle walls and make sure that moves through a wall cannot happen.
+	
 	\section{Q-Learning}
 		\subsection{Description}
 			\textit{Q-learning} is a model-free reinforcement learning method for determining optimal action-selection policies \cite{ai}. An agent using this method leverages a quantity known as the $Q$-value to derive the optimal action $a$ for each state $s$. The $Q$-value, $Q(s,a)$ describes the expected utility for every action in every state within the environment and is learned by the agent using temporal difference learning.

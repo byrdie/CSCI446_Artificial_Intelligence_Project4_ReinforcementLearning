@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.3)  1 DEC 2016 23:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.3)  2 DEC 2016 12:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -580,7 +580,12 @@ LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <24> not available
 LaTeX Font Warning: Font shape `T1/cmr/bx/n' in size <24> not available
 (Font)              size <24.88> substituted on input line 80.
 
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 99.
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 112.
+
+
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
@@ -596,64 +601,64 @@ Package epstopdf Info: Source file: <Diagrams/uml.eps>
 (epstopdf)                    size: 69483 bytes
 (epstopdf)             Command: <repstopdf --outfile=Diagrams/uml-eps-converted
 -to.pdf Diagrams/uml.eps>
-(epstopdf)             \includegraphics on input line 104.
+(epstopdf)             \includegraphics on input line 117.
 Package epstopdf Info: Output file is already uptodate.
 
-<Diagrams/uml-eps-converted-to.pdf, id=48, 1387.1825pt x 476.78125pt>
+<Diagrams/uml-eps-converted-to.pdf, id=81, 1387.1825pt x 476.78125pt>
 File: Diagrams/uml-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Diagrams/uml-eps-converted-to.pdf>
 Package pdftex.def Info: Diagrams/uml-eps-converted-to.pdf used on input line 1
-04.
+17.
 (pdftex.def)             Requested size: 465.06004pt x 159.84093pt.
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
-] (./CSCI446_project4_design_report_group21.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 114.
- [2 <./Diagrams/uml-eps-converted-to.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 114.
+(./CSCI446_project4_design_report_group21.bbl [2])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 127.
+ [3 <./Diagrams/uml-eps-converted-to.pdf>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 127.
  (./CSCI446_project4_design_report_group21.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 114.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 114.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 127.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 127.
 Package rerunfilecheck Info: File `CSCI446_project4_design_report_group21.out' 
 has not changed.
-(rerunfilecheck)             Checksum: 61FB68698126CCB177A54099A534717C;553.
+(rerunfilecheck)             Checksum: A39FB4D02A463034D9856BA26D034A4F;673.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.88pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 114.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 127.
  ) 
 Here is how much of TeX's memory you used:
- 10040 strings out of 493029
- 153168 string characters out of 6136234
- 385981 words of memory out of 5000000
- 13348 multiletter control sequences out of 15000+600000
- 20357 words of font info for 77 fonts, out of 8000000 for 9000
+ 10060 strings out of 493029
+ 153373 string characters out of 6136234
+ 386030 words of memory out of 5000000
+ 13351 multiletter control sequences out of 15000+600000
+ 20698 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,10n,43p,578b,388s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,11n,43p,605b,434s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.pfb></usr
-/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/t
-ype1/public/cm-super/sfcc1000.pfb></usr/share/texmf/fonts/type1/public/cm-super
-/sfcc1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1440.pfb></usr/
-share/texmf/fonts/type1/public/cm-super/sfcc1728.pfb></usr/share/texmf/fonts/ty
-pe1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/
-sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/s
-hare/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/typ
-e1/public/cm-super/sftt1000.pfb>
-Output written on CSCI446_project4_design_report_group21.pdf (2 pages, 288177 b
+ublic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.pfb></usr/share/t
+exmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/pub
+lic/cm-super/sfcc1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc120
+0.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1440.pfb></usr/share/te
+xmf/fonts/type1/public/cm-super/sfcc1728.pfb></usr/share/texmf/fonts/type1/publ
+ic/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200
+.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/tex
+mf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/publi
+c/cm-super/sftt1000.pfb>
+Output written on CSCI446_project4_design_report_group21.pdf (3 pages, 304615 b
 ytes).
 PDF statistics:
- 145 PDF objects out of 1000 (max. 8388607)
- 120 compressed objects within 2 object streams
- 16 named destinations out of 1000 (max. 500000)
- 26198 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 166 PDF objects out of 1000 (max. 8388607)
+ 139 compressed objects within 2 object streams
+ 21 named destinations out of 1000 (max. 500000)
+ 26214 words of extra memory for PDF output out of 29859 (max. 10000000)
 
