@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.3)  2 DEC 2016 12:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.3)  2 DEC 2016 13:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -580,12 +580,7 @@ LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <24> not available
 LaTeX Font Warning: Font shape `T1/cmr/bx/n' in size <24> not available
 (Font)              size <24.88> substituted on input line 80.
 
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 114.
-
-
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 84.
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
@@ -593,6 +588,9 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `cmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+]
 Package epstopdf Info: Source file: <Diagrams/uml.eps>
 (epstopdf)                    date: 2016-12-01 22:12:32
 (epstopdf)                    size: 169332 bytes
@@ -604,7 +602,7 @@ Package epstopdf Info: Source file: <Diagrams/uml.eps>
 (epstopdf)             \includegraphics on input line 119.
 Package epstopdf Info: Output file is already uptodate.
 
-<Diagrams/uml-eps-converted-to.pdf, id=81, 1387.1825pt x 476.78125pt>
+<Diagrams/uml-eps-converted-to.pdf, id=78, 1387.1825pt x 476.78125pt>
 File: Diagrams/uml-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Diagrams/uml-eps-converted-to.pdf>
@@ -621,7 +619,7 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 129.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 129.
 Package rerunfilecheck Info: File `CSCI446_project4_design_report_group21.out' 
 has not changed.
-(rerunfilecheck)             Checksum: A39FB4D02A463034D9856BA26D034A4F;673.
+(rerunfilecheck)             Checksum: E26BC659C247BE73B3C767FF507871FD;600.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -630,13 +628,13 @@ LaTeX Font Warning: Size substitutions with differences
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 129.
  ) 
 Here is how much of TeX's memory you used:
- 10068 strings out of 493029
- 153459 string characters out of 6136234
+ 10072 strings out of 493029
+ 153491 string characters out of 6136234
  387030 words of memory out of 5000000
- 13351 multiletter control sequences out of 15000+600000
- 20930 words of font info for 87 fonts, out of 8000000 for 9000
+ 13350 multiletter control sequences out of 15000+600000
+ 21090 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,10n,43p,949b,388s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,10n,43p,1067b,388s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
@@ -654,11 +652,11 @@ ic/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200
 .pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/tex
 mf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/publi
 c/cm-super/sftt1000.pfb>
-Output written on CSCI446_project4_design_report_group21.pdf (3 pages, 307800 b
+Output written on CSCI446_project4_design_report_group21.pdf (3 pages, 308707 b
 ytes).
 PDF statistics:
- 166 PDF objects out of 1000 (max. 8388607)
- 139 compressed objects within 2 object streams
- 21 named destinations out of 1000 (max. 500000)
- 26214 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 162 PDF objects out of 1000 (max. 8388607)
+ 135 compressed objects within 2 object streams
+ 20 named destinations out of 1000 (max. 500000)
+ 26206 words of extra memory for PDF output out of 29859 (max. 10000000)
 

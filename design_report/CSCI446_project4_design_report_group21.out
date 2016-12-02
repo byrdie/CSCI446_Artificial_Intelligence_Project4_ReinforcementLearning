@@ -1,12 +1,11 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{The Racetrack Problem}{}% 2
-\BOOKMARK [1][-]{section.3}{Reinforcement Learning Algorithms}{}% 3
-\BOOKMARK [1][-]{section.4}{Value Iteration}{}% 4
-\BOOKMARK [2][-]{subsection.4.1}{Value Iteration}{section.4}% 5
-\BOOKMARK [2][-]{subsection.4.2}{Design Implications}{section.4}% 6
-\BOOKMARK [1][-]{section.5}{Q-Learning}{}% 7
-\BOOKMARK [2][-]{subsection.5.1}{Description}{section.5}% 8
-\BOOKMARK [2][-]{subsection.5.2}{Design Implications}{section.5}% 9
-\BOOKMARK [1][-]{section.6}{Software Design}{}% 10
-\BOOKMARK [1][-]{section.7}{Experiment Design}{}% 11
-\BOOKMARK [1][-]{section.8}{Summary}{}% 12
+\BOOKMARK [1][-]{section.3}{Value Iteration}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Description}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Design Implications}{section.3}% 5
+\BOOKMARK [1][-]{section.4}{Q-Learning}{}% 6
+\BOOKMARK [2][-]{subsection.4.1}{Description}{section.4}% 7
+\BOOKMARK [2][-]{subsection.4.2}{Design Implications}{section.4}% 8
+\BOOKMARK [1][-]{section.5}{Software Design}{}% 9
+\BOOKMARK [1][-]{section.6}{Experiment Design}{}% 10
+\BOOKMARK [1][-]{section.7}{Summary}{}% 11
