@@ -81,7 +81,9 @@
 	\normalsize
 
 	\section{Introduction}
+		Within the field of machine learning, there exists a branch known as reinforcement learning.  An agent of reinforcement learning makes actions in its environment and observes the rewards that it obtains from such actions.  From the immediate observations, the agent may be trained to maximize its cumulative rewards through the problem that it attempts to solve.
 	\section{The Racetrack Problem}
+		With reinforcement learning, we will attempt to solve the racetrack problem.  The goal of this problem is simply to control the movement of a race car as it moves along a track.  Performance is based upon the number of time steps that the car requires to reach the finish.  If the car moves into a wall, a penalty will be applied, thus decreasing performance.  The car is represented by four variables at any given state: xt and yt (x and y coordinates of the car’s location at time t) and ẋi and ẏi (x and y components of the car’s velocity at time t).  Control of the car can only be achieved by manipulating the velocity of the car, using the variables ax and ay (x and y components of the acceleration vector).  The problem is altered by the addition of a 20 percent chance of failure for any acceleration action.  Additionally, the agent will be tested on multiple tracks of varying shape.
 	\section{Reinforcement Learning Algorithms}
 		\subsection{Value Iteration}
 	\section{Q-Learning}
