@@ -4,6 +4,10 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>engine.h</itemPath>
+      <itemPath>qt_world.h</itemPath>
+      <itemPath>reasoning_agent.h</itemPath>
+      <itemPath>typedef.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -12,7 +16,11 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>engine.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
+      <itemPath>qt_world.cpp</itemPath>
+      <itemPath>reasoning_agent.cpp</itemPath>
+      <itemPath>typedef.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -39,7 +47,23 @@
       </qt>
       <compileType>
       </compileType>
+      <item path="engine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="engine.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="qt_world.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="qt_world.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="reasoning_agent.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="reasoning_agent.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="typedef.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="typedef.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="4">
@@ -66,7 +90,23 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="engine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="engine.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="qt_world.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="qt_world.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="reasoning_agent.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="reasoning_agent.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="typedef.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="typedef.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
