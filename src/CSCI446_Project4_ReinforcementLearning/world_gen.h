@@ -26,9 +26,6 @@ class World;
 #include "qt_world.h"
 #include "human_agent.h"
 #include "typedef.h"
-#include "reactive_agent.h"                                                                                                                            
-#define START_X 1
-#define START_Y 1
 
 using namespace std;
 
