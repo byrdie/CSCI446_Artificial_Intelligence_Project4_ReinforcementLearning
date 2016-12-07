@@ -23,3 +23,16 @@ int main(int argc, char *argv[]) {
 
     return app.exec();
 }
+
+/* Prepare random number generation */
+void init_rand(unsigned long int seed) {
+    srand(seed);
+    printf("Seed: %lu\n", seed);
+}
+
+unsigned long int init_rand() {
+    unsigned int seed = time(NULL);
+    srand(seed);
+    printf("Seed: %u\n", seed);
+    return seed;
+}

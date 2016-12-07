@@ -21,9 +21,13 @@ class Engine;
 class Engine {
     
 public: 
+    bool restart;
+    World rt;
+    Agent car;
     
-    Engine(World * this_world);
-    void move(Point accel , Point * pos, Point * vel);
+    Engine(World& world, Agent& agent, bool crash_restart);
+    void move(Point accel , Point& pos, Point& vel);
+    int range(int arg, int n1, int n2);
 private:
     World * world;
     
