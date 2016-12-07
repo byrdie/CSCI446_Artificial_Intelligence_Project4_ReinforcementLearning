@@ -22,42 +22,27 @@
 class World;
 
 
-#include "logic_agent.h"
+
 #include "qt_world.h"
-#include "human_agent.h"
+
 #include "typedef.h"
 
 using namespace std;
 
-
-
-class World {                                                  
+class World {
 public:
-    int N;
-    int num_wumpi;
-    int num_pits;
-    int num_barriers;
+    uint x_size;
+    uint y_size;
     vector<vector<int> > world_vec;
-    
+
     Qt_world * qt_world;
-    
-    // Points describing location of various obstacles
-    vector<Point*> wumpus_list;
-    vector<Point*> pit_list;
-    vector<Point*> barrier_list;
-    vector<Point*> gold_list;
-    
-    World(int side_length, Logic_agent * agent);   // Create a new world covered in fog
-    World(int side_length, Human_agent * agent);   // Create a new world covered in fog
-    World(int side_length, Reactive_agent * agent); 
-    World(int side_length, int n_wumpi, int n_pit, int n_barrier); // Create a new master world
-    World(char * filename);     // Load a world from a file
-    bool tile_is_empty(Point * p);
-    Point * add_element(int elem);
-    vector<Point *> add_effect(Point * center, int effect_bits);
-    vector<Point *> find_neighbors(Point * center);
-    void reset(int side_length, int n_wumpi, int n_pit, int n_barrier);
-    
+
+
+    World(string dir, string filename); // Load a world from a file
+    void add_effect(Point * center, int effect_bits);
+
+
+
 };
 
 #endif /* WORLD_GEN_H */
