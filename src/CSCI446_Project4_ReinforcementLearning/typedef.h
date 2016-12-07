@@ -118,7 +118,7 @@ public:
     int y;
     ;
 
-    Point(float xpos, float ypos) {
+    Point(int xpos, int ypos) {
         x = xpos;
         y = ypos;
     }
