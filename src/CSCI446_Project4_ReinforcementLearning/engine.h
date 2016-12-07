@@ -14,6 +14,9 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
+#include "world_gen.h"
+#include "agent.h"
+
 class Engine;
 
 
@@ -22,10 +25,10 @@ class Engine {
     
 public: 
     bool restart;
-    World rt;
-    Agent car;
+    World * rt;
+    Agent * car;
     
-    Engine(World& world, Agent& agent, bool crash_restart);
+    Engine(World * world, Agent * agent, bool crash_restart);
     void move(Point accel , Point& pos, Point& vel);
     int range(int arg, int n1, int n2);
 private:

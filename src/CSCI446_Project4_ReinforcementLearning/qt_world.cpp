@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 //class Gameboard : public QGraphicsView {
 //public:
 
@@ -26,21 +20,6 @@ Qt_world::Qt_world(int num_tiles) {
     init_map();
 
 }
-
-Qt_world::Qt_world(int num_tiles) {
-    // Initialize variables
-    N = num_tiles;
-    win_sz = 1000;
-    scale = win_sz / (num_tiles + 2);
-
-    // Initialize Qt variables
-    scene = new QGraphicsScene(0, 0, win_sz, win_sz);
-    view = new World_view(scene);
-    view->resize(win_sz, win_sz);
-    view->setBackgroundBrush(QBrush(Qt::black, Qt::SolidPattern));
-    init_map();
-}
-
 
 void Qt_world::init_map() {
     wall_sprite = new QPixmap("sprites/cobble.png");

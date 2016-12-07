@@ -5,10 +5,8 @@
 
 
 #include "engine.h"
-#include "typedef.h"
-#include <cmath>
 
-Engine::Engine(World& world, Agent& agent, bool crash_restart) {
+Engine::Engine(World * world, Agent * agent, bool crash_restart) {
    
     restart = crash_restart;
     rt = world;
@@ -39,7 +37,7 @@ void Engine::move(Point accel, Point& pos, Point& vel) {
 
 }
 
-int range(int arg, int n1, int n2) {
+int Engine::range(int arg, int n1, int n2) {
 
     int n_max = max(n1, n2);
     int n_min = min(n1, n2);

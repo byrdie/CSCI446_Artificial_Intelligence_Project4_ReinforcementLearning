@@ -8,7 +8,6 @@
       <itemPath>engine.h</itemPath>
       <itemPath>main.h</itemPath>
       <itemPath>qt_world.h</itemPath>
-      <itemPath>reasoning_agent.h</itemPath>
       <itemPath>typedef.h</itemPath>
       <itemPath>world_gen.h</itemPath>
     </logicalFolder>
@@ -23,7 +22,6 @@
       <itemPath>engine.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
       <itemPath>qt_world.cpp</itemPath>
-      <itemPath>reasoning_agent.cpp</itemPath>
       <itemPath>typedef.cpp</itemPath>
       <itemPath>world_gen.cpp</itemPath>
     </logicalFolder>
@@ -51,6 +49,9 @@
         <modules>core gui widgets</modules>
       </qt>
       <compileType>
+        <ccTool>
+          <standard>11</standard>
+        </ccTool>
       </compileType>
       <item path="agent.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -67,10 +68,6 @@
       <item path="qt_world.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="qt_world.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="reasoning_agent.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="reasoning_agent.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="typedef.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -120,10 +117,6 @@
       <item path="qt_world.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="qt_world.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="reasoning_agent.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="reasoning_agent.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="typedef.cpp" ex="false" tool="1" flavor2="0">
       </item>
