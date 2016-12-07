@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /* 
  * File:   agent.h
@@ -14,12 +9,12 @@
 #ifndef AGENT_H
 #define AGENT_H
 
+#include "typedef.h"
+
 class Agent {
 public:
-    Point pos;
-    Point vel;
-    Agent(Point& start_pos, Point& start_vel);
-    virtual int next_move() = 0;
+    Agent();
+    virtual Point next_accel(const Point& pos, const Point& vel) = 0;
     
 };
 

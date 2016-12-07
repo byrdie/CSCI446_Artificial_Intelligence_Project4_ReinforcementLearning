@@ -11,6 +11,8 @@
  * Created on December 6, 2016, 8:52 PM
  */
 
+#include "main.h"
+
 #include <QApplication>
 
 int main(int argc, char *argv[]) {
@@ -18,6 +20,8 @@ int main(int argc, char *argv[]) {
     // Q_INIT_RESOURCE(resfile);
 
     QApplication app(argc, argv);
+    
+//    World * wrld = new World();
 
     // create and show your widgets here
 

@@ -8,6 +8,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include "world_gen.h"
+
 void init_rand(unsigned long int seed);
 unsigned long int init_rand();
 

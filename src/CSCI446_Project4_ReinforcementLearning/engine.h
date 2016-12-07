@@ -19,22 +19,18 @@
 
 class Engine;
 
-
-
 class Engine {
-    
-public: 
+public:
+    Engine(World * world, Agent * agent, bool crash_restart);
+    void run();
+private:
     bool restart;
     World * rt;
     Agent * car;
-    
-    Engine(World * world, Agent * agent, bool crash_restart);
-    void move(Point accel , Point& pos, Point& vel);
+    vector<Point> pos_lst;
+    vector<Point> vel_lst;
+    void move();
     int range(int arg, int n1, int n2);
-private:
-    World * world;
-    
-    
 };
 
 #endif /* ENGINE_H */

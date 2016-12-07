@@ -13,7 +13,7 @@ World::World(string dir, string filename) {
     getline(attr_file, value);
     while (attr_file.good()) {
         getline(attr_file, value);
-        vector<int> row;
+        vector<uint> row;
         for (char& c : value) {
             if (c == '#') {
                 row.push_back(WALL);
