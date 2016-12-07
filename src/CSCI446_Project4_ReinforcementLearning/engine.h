@@ -18,18 +18,12 @@ class Engine;
 
 
 
-#define DEATH   666
-#define WIN     777
 class Engine {
     
 public: 
     
     Engine(World * this_world);
-    int orientation;
-    int score;
-    int move(int direction, Point * cur_pos);
-    int orient_to_direction(int direction, int orientation);
-    int num_obstacles();
+    void move(Point accel , Point * pos, Point * vel);
 private:
     World * world;
     
