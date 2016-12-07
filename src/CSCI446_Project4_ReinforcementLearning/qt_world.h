@@ -24,20 +24,17 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QGraphicsItem>
-#include <qt5/QtGui/qpixmap.h>
+//#include <qt5/QtGui/qpixmap.h>
 #include <QRect>
 #include <vector>
 #include <QKeyEvent>
-#include <qt5/QtWidgets/qwidget.h>
+//#include <qt5/QtWidgets/qwidget.h>
 
 class Qt_world;
 class World_view;
 
 #include "typedef.h"
-#include "human_agent.h"
-#include "logic_agent.h"
 
-#include "reactive_agent.h"
 using namespace std;
 
 
@@ -52,21 +49,12 @@ public:
     World_view * view;
     
     // Qt pixelmaps of sprites
-    QPixmap * base_bg_sprite;
-    QPixmap * base_p_cobble_sprite;
-    QPixmap * base_wall_sprite;
-    QPixmap * base_hero_sprite;
-    QPixmap * base_wumpus_sprite;
-    QPixmap * base_p_wumpus_sprite;
-    QPixmap * base_stench_sprite;
-    QPixmap * base_pit_sprite;
-    QPixmap * base_p_pit_sprite;
-    QPixmap * base_breeze_sprite;
-    QPixmap * base_gold_sprite;
-    QPixmap * base_fog_sprite;
-    QPixmap * base_clear_sprite;
-    QPixmap * base_not_clear_sprite;
-    QPixmap * base_move_sprite;
+    QPixmap * wall_sprite;
+    QPixmap * start_sprite;
+    QPixmap * finish_sprite;
+    QPixmap * track_sprite;
+    QPixmap * car_sprite;
+   
     
     // Dictionary between sprites and bits
     map<int, QPixmap *> sprite_map;
@@ -77,9 +65,8 @@ public:
 
     // Constructor
     Qt_world(int num_tiles);
-    Qt_world(int num_tiles, Logic_agent * h_agent);
-    Qt_world(int num_tiles, Human_agent * h_agent);
-    Qt_world(int num_tiles, Reactive_agent * h_agent);
+    //Qt_world(int num_tiles, Human_agent * h_agent);
+
     void init_map();
     void save_world(char * filename);
     
@@ -92,15 +79,10 @@ public:
 class World_view : public QGraphicsView {
 public:
 
-    Logic_agent * agent;
-    Human_agent * hagent;
-    Reactive_agent* ragent;
+    //Reactive_agent* ragent;
 
-    
 
-    World_view(QGraphicsScene * scene, Logic_agent * h_agent);
-    World_view(QGraphicsScene * scene, Human_agent * h_agent);
-    World_view(QGraphicsScene * scene, Reactive_agent * h_agent);
+   // World_view(QGraphicsScene * scene, Reactive_agent * h_agent);
     World_view(QGraphicsScene * scene);
     
 

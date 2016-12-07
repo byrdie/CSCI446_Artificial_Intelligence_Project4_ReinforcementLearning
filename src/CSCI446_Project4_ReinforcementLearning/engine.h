@@ -16,7 +16,7 @@
 
 class Engine;
 
-#include "world_gen.h"
+
 
 #define DEATH   666
 #define WIN     777
