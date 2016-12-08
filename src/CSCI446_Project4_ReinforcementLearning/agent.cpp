@@ -16,7 +16,7 @@ DumbAgent::DumbAgent() : Agent() {
     
 }
 
-Point DumbAgent::next_accel(const Point& pos, const Point& vel){
+Point DumbAgent::next_accel(const Point& pos, const Point& vel, const int reward, const bool terminate){
     
     return Point(0,-1);
     

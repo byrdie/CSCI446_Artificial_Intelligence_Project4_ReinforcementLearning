@@ -44,12 +44,15 @@ void Engine::run() {
     while (true) {
 
         /* Have the agent carry out the next move */
-        move();
+        move(-1, false);
         Point pos = pos_lst.back(); // Update the current position
         Point vel = vel_lst.back();
         rt->qt_world->move_tile(car_tile, pos.x, pos.y);
         qApp->processEvents();
         qApp->processEvents();
+        usleep(500000);
+
+
 
         /* Check that the agent didn't hit a wall */
         if (rt->world_vec[pos.x][pos.y] == WALL) {
@@ -66,15 +69,16 @@ void Engine::run() {
             rt->qt_world->move_tile(car_tile, pos.x, pos.y);
             qApp->processEvents();
             qApp->processEvents();
-
+            usleep(500000);
         }
 
         /* Check if the agent has reached the finish line */
         if (rt->world_vec[pos.x][pos.y] == FINISH) {
+            move(0, true);
             break; // If so, break out of the loop
         }
 
-        usleep(500000);
+
 
     }
 
@@ -84,11 +88,11 @@ void Engine::run() {
  * Have the update the position and velocity based on the agent's requested
  * acceleration
  */
-void Engine::move() {
+void Engine::move(const int reward, const bool terminal) {
 
     Point pos = pos_lst.back();
     Point vel = vel_lst.back();
-    Point accel = car->next_accel(pos, vel);
+    Point accel = car->next_accel(pos, vel, reward, terminal);
 
 
     /* restrict acceleration */
