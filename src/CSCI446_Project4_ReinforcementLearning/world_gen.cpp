@@ -12,7 +12,6 @@ World::World(string dir, string filename) {
     string value;
     getline(attr_file, value);
     while (attr_file.good()) {
-        cout << "What\n";
         getline(attr_file, value);
         vector<uint> row;
         for (char& c : value) {
@@ -48,7 +47,6 @@ World::World(string dir, string filename) {
     attr_file.close();
     qt_world = new Qt_world(max(world_vec.size(), world_vec[0].size()));
     for (uint i = 0; i < world_vec.size(); i++) {
-        cout << world_vec[i].size() << endl;
         for (uint j = 0; j < world_vec[0].size(); j++) {
             qt_world->set_tile(i, j, world_vec[i][j]);    
         }
