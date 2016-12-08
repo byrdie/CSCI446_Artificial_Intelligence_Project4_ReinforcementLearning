@@ -13,7 +13,7 @@ Engine::Engine(World * world, Agent * agent, bool crash_restart) {
     car = agent;
 
     /* Find the starting positions */
-    
+
     for (uint i = 0; i < rt->world_vec.size(); i++) {
         for (uint j = 0; j < rt->world_vec[i].size(); j++) {
             if (rt->world_vec[i][j] == START) {
@@ -22,7 +22,7 @@ Engine::Engine(World * world, Agent * agent, bool crash_restart) {
             }
         }
     }
-    
+
 
 }
 
@@ -34,7 +34,7 @@ void Engine::run() {
     pos_lst.push_back(start_pos[rand() % start_pos.size()]);
     Point start_vel(0, 0);
     vel_lst.push_back(start_vel);
-    
+
     /* add car to the board */
     car_tile = rt->qt_world->set_tile(pos_lst.back().x, pos_lst.back().y, CAR);
     qApp->processEvents();
@@ -106,8 +106,8 @@ void Engine::move() {
     vel.y = range(vel.y + accel.y, 5, -5);
 
     /* Calculate new position */
-    pos.x = pos.x + vel.x;
-    pos.y = pos.y + vel.y;
+    pos.x = range(pos.x + vel.x, 0, rt->world_vec.size() - 1);
+    pos.y = range(pos.y + vel.y, 0, rt->world_vec[0].size() - 1);
 
     /* Update list of positions and velocities */
     pos_lst.push_back(pos);
