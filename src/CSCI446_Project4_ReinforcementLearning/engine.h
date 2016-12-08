@@ -27,6 +27,8 @@ private:
     bool restart;
     World * rt;
     Agent * car;
+    QGraphicsPixmapItem * car_tile;
+    vector<Point> start_pos;
     vector<Point> pos_lst;
     vector<Point> vel_lst;
     void move();

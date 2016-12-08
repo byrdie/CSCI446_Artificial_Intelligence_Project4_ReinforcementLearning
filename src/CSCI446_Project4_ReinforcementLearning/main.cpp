@@ -20,12 +20,15 @@ int main(int argc, char *argv[]) {
     // Q_INIT_RESOURCE(resfile);
 
     string dir = "Tracks/";
-    string filename = "O-track.txt";
+    string filename = "R-track.txt";
     QApplication app(argc, argv);
     World * world = new World(dir, filename);
+    
+    sleep(1);
+    
     DumbAgent * da = new DumbAgent;
     Engine engine(world,da,true);
-    
+    engine.run();
     
     // create and show your widgets here
 

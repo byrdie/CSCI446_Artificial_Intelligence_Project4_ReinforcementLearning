@@ -12,14 +12,10 @@ Engine::Engine(World * world, Agent * agent, bool crash_restart) {
     rt = world;
     car = agent;
 
-}
-
-void Engine::run() {
-
     /* Find the starting positions */
-    vector<Point> start_pos;
-    for (uint i = 0; i < rt->x_size; i++) {
-        for (uint j = 0; j < rt->y_size; j++) {
+    
+    for (uint i = 0; i < rt->world_vec.size(); i++) {
+        for (uint j = 0; j < rt->world_vec[i].size(); j++) {
             if (rt->world_vec[i][j] == START) {
                 Point spos(i, j);
                 start_pos.push_back(spos);
@@ -27,10 +23,21 @@ void Engine::run() {
         }
     }
     
+
+}
+
+void Engine::run() {
+
+
+
     /* Select starting position and velocity */
     pos_lst.push_back(start_pos[rand() % start_pos.size()]);
-    Point start_vel(0,0);
+    Point start_vel(0, 0);
     vel_lst.push_back(start_vel);
+    
+    /* add car to the board */
+    car_tile = rt->qt_world->set_tile(pos_lst.back().x, pos_lst.back().y, CAR);
+    qApp->processEvents();
 
 
     /* Main control loop */
@@ -40,6 +47,9 @@ void Engine::run() {
         move();
         Point pos = pos_lst.back(); // Update the current position
         Point vel = vel_lst.back();
+        rt->qt_world->move_tile(car_tile, pos.x, pos.y);
+        qApp->processEvents();
+        qApp->processEvents();
 
         /* Check that the agent didn't hit a wall */
         if (rt->world_vec[pos.x][pos.y] == WALL) {
@@ -53,14 +63,18 @@ void Engine::run() {
             vel = start_vel;
             pos_lst.push_back(pos);
             vel_lst.push_back(vel);
+            rt->qt_world->move_tile(car_tile, pos.x, pos.y);
+            qApp->processEvents();
+            qApp->processEvents();
 
         }
-        
+
         /* Check if the agent has reached the finish line */
         if (rt->world_vec[pos.x][pos.y] == FINISH) {
-            break;  // If so, break out of the loop
+            break; // If so, break out of the loop
         }
-        
+
+        usleep(500000);
 
     }
 
