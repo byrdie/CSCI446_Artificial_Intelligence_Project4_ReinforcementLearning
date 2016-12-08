@@ -14,14 +14,14 @@
 class Agent {
 public:
     Agent();
-    virtual Point next_accel(const Point& pos, const Point& vel) = 0;
+    virtual Point next_accel(const Point& pos, const Point& vel, const int reward, const bool terminate) = 0;
     
 };
 
 class DumbAgent : public Agent{
 public:
     DumbAgent();
-    Point next_accel(const Point& pos, const Point& vel);
+    Point next_accel(const Point& pos, const Point& vel, const int reward, const bool terminate);
     
 };
 
