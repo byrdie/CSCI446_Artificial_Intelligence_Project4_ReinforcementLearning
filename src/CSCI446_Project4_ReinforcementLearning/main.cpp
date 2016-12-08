@@ -11,6 +11,8 @@
  * Created on December 6, 2016, 8:52 PM
  */
 
+#include "main.h"
+
 #include <QApplication>
 
 int main(int argc, char *argv[]) {
@@ -18,8 +20,23 @@ int main(int argc, char *argv[]) {
     // Q_INIT_RESOURCE(resfile);
 
     QApplication app(argc, argv);
+    
+//    World * wrld = new World();
 
     // create and show your widgets here
 
     return app.exec();
+}
+
+/* Prepare random number generation */
+void init_rand(unsigned long int seed) {
+    srand(seed);
+    printf("Seed: %lu\n", seed);
+}
+
+unsigned long int init_rand() {
+    unsigned int seed = time(NULL);
+    srand(seed);
+    printf("Seed: %u\n", seed);
+    return seed;
 }

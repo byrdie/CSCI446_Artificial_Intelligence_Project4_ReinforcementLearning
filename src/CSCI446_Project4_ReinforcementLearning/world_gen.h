@@ -33,7 +33,7 @@ class World {
 public:
     uint x_size;
     uint y_size;
-    vector<vector<int> > world_vec;
+    vector<vector<uint> > world_vec;
 
     Qt_world * qt_world;
 

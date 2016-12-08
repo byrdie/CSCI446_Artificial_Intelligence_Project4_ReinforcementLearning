@@ -14,20 +14,23 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
+#include "world_gen.h"
+#include "agent.h"
+
 class Engine;
 
-
-
 class Engine {
-    
-public: 
-    
-    Engine(World * this_world);
-    void move(Point accel , Point * pos, Point * vel);
+public:
+    Engine(World * world, Agent * agent, bool crash_restart);
+    void run();
 private:
-    World * world;
-    
-    
+    bool restart;
+    World * rt;
+    Agent * car;
+    vector<Point> pos_lst;
+    vector<Point> vel_lst;
+    void move();
+    int range(int arg, int n1, int n2);
 };
 
 #endif /* ENGINE_H */

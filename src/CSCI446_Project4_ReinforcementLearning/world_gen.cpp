@@ -1,5 +1,6 @@
 
 #include <vector>
+#include <fstream>
 
 #include "world_gen.h"
 #include "qt_world.h"
@@ -8,22 +9,21 @@
 
 World::World(string dir, string filename) {
     ifstream attr_file(dir + filename);
-    int i = 0;
     string value;
     getline(attr_file, value);
     while (attr_file.good()) {
         getline(attr_file, value);
-        vector<int> row;
+        vector<uint> row;
         for (char& c : value) {
-            if (c = '#') {
+            if (c == '#') {
                 row.push_back(WALL);
-            } else if (c = 'S') {
+            } else if (c == 'S') {
                 row.push_back(START);
-            } else if (c = 'F') {
+            } else if (c == 'F') {
                 row.push_back(FINISH);
-            } else if (c = '.') {
+            } else if (c == '.') {
                 row.push_back(TRACK);
-            } else if (c = 'X') {
+            } else if (c == 'X') {
                 row.push_back(CAR);
             }
         }
@@ -34,8 +34,8 @@ World::World(string dir, string filename) {
     attr_file.close();
     qt_world = new Qt_world(world_vec.size());
     
-    for(int i = 0; i < world_vec.size(); i++){
-        for(int j = 0; j < world_vec[0].size(); j++){
+    for(uint i = 0; i < world_vec.size(); i++){
+        for(uint j = 0; j < world_vec[0].size(); j++){
             qt_world->set_tile(i, j, world_vec[i][j]);
         }
     }

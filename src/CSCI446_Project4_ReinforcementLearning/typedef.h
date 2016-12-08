@@ -17,11 +17,11 @@
 
 
 
-#define WALL     0x00000000
-#define START    0x00000001
-#define FINISH  0x00000002
-#define TRACK  0x00000004
-#define CAR     0x00000008
+#define WALL    0x00000001
+#define START   0x00000002
+#define FINISH  0x00000004
+#define TRACK   0x00000008
+#define CAR     0x00000010
 
 
 // Definite move types
@@ -34,11 +34,6 @@
 #include <tuple>
 #include <string>
 using namespace std;
-
-
-
-
-
 
 class Point {
 public:
