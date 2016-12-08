@@ -12,6 +12,7 @@ World::World(string dir, string filename) {
     string value;
     getline(attr_file, value);
     while (attr_file.good()) {
+        cout << "What\n";
         getline(attr_file, value);
         vector<uint> row;
         for (char& c : value) {
@@ -27,33 +28,33 @@ World::World(string dir, string filename) {
                 row.push_back(CAR);
             }
         }
-        
+
         world_vec.push_back(row);
     }
-    
-    attr_file.close();
-    qt_world = new Qt_world(world_vec.size());
-    
-    for(uint i = 0; i < world_vec.size(); i++){
-        for(uint j = 0; j < world_vec[0].size(); j++){
-            qt_world->set_tile(i, j, world_vec[i][j]);
+    world_vec.pop_back();
+
+    vector<vector < uint>> temp;
+
+    //rotate 90 degrees
+    for (uint i = 0; i < world_vec[0].size(); i++) {
+        vector<uint> t;
+        temp.push_back(t);
+        for (uint j = 0; j < world_vec.size(); j++) {
+            temp[i].push_back(world_vec[j][i]);
         }
     }
-  
-    //    N = side_length;
-    //    qt_world = new Qt_world(N, agent);
-    //
-    //    // Fill empty board with fog of war
-    //    for (int i = 0; i < N + 2; i++) {
-    //        vector<int> world_vec_row;
-    //        for (int j = 0; j < N + 2; j++) {
-    //            world_vec_row.push_back(FOG);
-    //            qt_world->set_tile(i, j, FOG);
-    //        }
-    //        world_vec.push_back(world_vec_row);
-    //    }
-    //
-    //    qt_world->view->show();
+    world_vec = temp;
+
+    attr_file.close();
+    qt_world = new Qt_world(max(world_vec.size(), world_vec[0].size()));
+    for (uint i = 0; i < world_vec.size(); i++) {
+        cout << world_vec[i].size() << endl;
+        for (uint j = 0; j < world_vec[0].size(); j++) {
+            qt_world->set_tile(i, j, world_vec[i][j]);    
+        }
+    }
+    qt_world->view->show();
+
 }
 
 /**
@@ -65,10 +66,10 @@ void World::add_effect(Point * center, int effect_bits) {
 
     // Construct a vector of the four points surrounding the center
 
-            world_vec[center->x][center->y] = effect_bits;
-            qt_world->set_tile(center->x, center->y, effect_bits);
-      
-    
+    world_vec[center->x][center->y] = effect_bits;
+    qt_world->set_tile(center->x, center->y, effect_bits);
+
+
 
 }
 

@@ -22,11 +22,11 @@ Qt_world::Qt_world(int num_tiles) {
 }
 
 void Qt_world::init_map() {
-    wall_sprite = new QPixmap("sprites/cobble.png");
-    start_sprite = new QPixmap("sprites/p_cobble.png");
-    finish_sprite = new QPixmap("sprites/wall.png");
-    track_sprite = new QPixmap("sprites/hero.png");
-    car_sprite = new QPixmap("sprites/wumpus2.png");
+    wall_sprite = new QPixmap("../sprites/wall.jpg");
+    start_sprite = new QPixmap("../sprites/start.png");
+    finish_sprite = new QPixmap("../sprites/finish.png");
+    track_sprite = new QPixmap("../sprites/track.png");
+    car_sprite = new QPixmap("../sprites/car.gif");
 
     // Initialize map between bits and sprites
     sprite_map[WALL] = wall_sprite;
