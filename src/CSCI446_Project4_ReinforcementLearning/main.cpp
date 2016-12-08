@@ -19,10 +19,14 @@ int main(int argc, char *argv[]) {
     // initialize resources, if needed
     // Q_INIT_RESOURCE(resfile);
 
+    string dir = "Tracks/";
+    string filename = "O-track.txt";
     QApplication app(argc, argv);
+    World * world = new World(dir, filename);
+    DumbAgent * da = new DumbAgent;
+    Engine engine(world,da,true);
     
-//    World * wrld = new World();
-
+    
     // create and show your widgets here
 
     return app.exec();

@@ -18,5 +18,12 @@ public:
     
 };
 
+class DumbAgent : public Agent{
+public:
+    DumbAgent();
+    Point next_accel(const Point& pos, const Point& vel);
+    
+};
+
 #endif /* AGENT_H */
 

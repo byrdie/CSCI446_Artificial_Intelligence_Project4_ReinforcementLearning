@@ -11,3 +11,13 @@
 Agent::Agent(){
     
 }
+
+DumbAgent::DumbAgent() : Agent() {
+    
+}
+
+Point DumbAgent::next_accel(const Point& pos, const Point& vel){
+    
+    return Point(1,0);
+    
+}
