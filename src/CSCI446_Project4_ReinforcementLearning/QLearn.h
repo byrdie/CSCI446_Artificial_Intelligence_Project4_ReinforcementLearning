@@ -17,7 +17,8 @@
 #include <climits>
 
 #define QNULL INT_MAX
-
+#define MAX_FREQ 3
+#define MAX_UTILITY 0.1
 class QLearningAgent;
 
 #include "agent.h"
@@ -36,10 +37,13 @@ private:
     int orwd;       // The old reward, a redefinition of r
     vector<vector<vector<vector<vector<vector<double>>>>>> Q;   // Table of Q-values, Q[s,a]
     vector<vector<vector<vector<vector<vector<uint>>>>>> N;     // Table of frequencies for state-action pairs, N[s,a]
+
     
-    Point exploration_function(const Point& pos, const Point& vel, const Point& action);
+    double exploration_function(double q_val, uint freq);
     uint a2i(int a);
     uint v2i(int v);
+    int i2a(uint i);
+    int i2v(uint i);
 };
 
 

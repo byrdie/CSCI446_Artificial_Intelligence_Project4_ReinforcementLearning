@@ -26,7 +26,7 @@ Engine::Engine(World * world, Agent * agent, bool crash_restart) {
 
 }
 
-void Engine::run() {
+void Engine::run(bool gui, uint slp_t) {
 
 
 
@@ -36,8 +36,11 @@ void Engine::run() {
     vel_lst.push_back(start_vel);
 
     /* add car to the board */
-    car_tile = rt->qt_world->set_tile(pos_lst.back().x, pos_lst.back().y, CAR);
-    qApp->processEvents();
+    if (gui) {
+        car_tile = rt->qt_world->set_tile(pos_lst.back().x, pos_lst.back().y, CAR);
+        qApp->processEvents();
+    }
+
 
 
     /* Main control loop */
@@ -47,10 +50,13 @@ void Engine::run() {
         move(-1, false);
         Point pos = pos_lst.back(); // Update the current position
         Point vel = vel_lst.back();
-        rt->qt_world->move_tile(car_tile, pos.x, pos.y);
-        qApp->processEvents();
-        qApp->processEvents();
-        usleep(500000);
+        if (gui) {
+            rt->qt_world->move_tile(car_tile, pos.x, pos.y);
+            qApp->processEvents();
+            qApp->processEvents();
+            usleep(slp_t);
+        }
+
 
 
 
@@ -66,10 +72,13 @@ void Engine::run() {
             vel = start_vel;
             pos_lst.push_back(pos);
             vel_lst.push_back(vel);
-            rt->qt_world->move_tile(car_tile, pos.x, pos.y);
-            qApp->processEvents();
-            qApp->processEvents();
-            usleep(500000);
+            if (gui) {
+                rt->qt_world->move_tile(car_tile, pos.x, pos.y);
+                qApp->processEvents();
+                qApp->processEvents();
+                usleep(slp_t);
+            }
+
         }
 
         /* Check if the agent has reached the finish line */
@@ -96,8 +105,8 @@ void Engine::move(const int reward, const bool terminal) {
 
 
     /* restrict acceleration */
-    accel.x = range(accel.x, 1, -1);
-    accel.y = range(accel.y, 1, -1);
+    accel.x = range(accel.x, MAX_ACC, MIN_ACC);
+    accel.y = range(accel.y, MAX_ACC, MIN_ACC);
 
     /* Apply probabilistic acceleration */
     if (rand() % 5 == 0) {
@@ -106,8 +115,8 @@ void Engine::move(const int reward, const bool terminal) {
     }
 
     /* Calculate new velocity */
-    vel.x = range(vel.x + accel.x, 5, -5);
-    vel.y = range(vel.y + accel.y, 5, -5);
+    vel.x = range(vel.x + accel.x, MAX_VEL, MIN_VEL);
+    vel.y = range(vel.y + accel.y, MAX_VEL, MIN_VEL);
 
     /* Calculate new position */
     pos.x = range(pos.x + vel.x, 0, rt->world_vec.size() - 1);

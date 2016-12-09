@@ -10,7 +10,7 @@
 
 #include "world_gen.h"
 #include "engine.h"
-//#include "agent.h"
+#include "QLearn.h"
 
 void init_rand(unsigned long int seed);
 unsigned long int init_rand();

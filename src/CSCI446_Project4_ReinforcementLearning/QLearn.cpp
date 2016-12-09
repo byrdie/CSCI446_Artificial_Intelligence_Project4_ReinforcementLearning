@@ -51,35 +51,45 @@ Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const int r
                 = Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)]
                 + alpha * N[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)]
                 * (orwd + gamma * max_a_Q - Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)]);
+        
+        cout << "Updated Q[" << opos.x << "][" << opos.y << "][" << ovel.x << "][" << ovel.y << "][" << oacc.x << "][" << oacc.y << "] = " 
+                << Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)] << "\n";
+        
     }
 
     /* Compute argmax_a' f(Q[s',a'], N[s',a']) */
-    double max_a_f = 0.0;
-    Point acc(QNULL,QNULL);
+    double max_a_f = -1e6;
+    Point acc(QNULL, QNULL);
     for (uint i = 0; i < NUM_ACC; i++) {
         for (uint j = 0; j < NUM_ACC; j++) {
-            double test = exploration_function(Q[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j],N[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j]);
-            if(test > max_a_f){
+            double test = exploration_function(Q[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j], N[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j]);
+            if (test > max_a_f) {
                 max_a_f = test;
-                acc.x = i;
-                acc.y = j;
+                acc.x = i2a(i);
+                acc.y = i2a(j);
             }
         }
     }
 
-    
+
     /* update variables */
     opos = pos;
     ovel = vel;
     oacc = acc;
     orwd = rwd;
     
+    cout << "Requested ax = " << acc.x << ", ay = " << acc.y << endl;
+
     return acc;
 
 }
 
-Point QLearningAgent::exploration_function(const Point& pos, const Point& vel, const Point& action) {
-
+double QLearningAgent::exploration_function(double q_val, uint freq) {
+    if (freq < MAX_FREQ) {
+        return MAX_UTILITY;
+    } else {
+        return q_val;
+    }
 }
 
 uint QLearningAgent::a2i(int a) {
@@ -88,4 +98,12 @@ uint QLearningAgent::a2i(int a) {
 
 uint QLearningAgent::v2i(int v) {
     return v - MIN_VEL;
+}
+
+int QLearningAgent::i2a(uint i){
+    return i + MIN_ACC;
+}
+
+int QLearningAgent::i2v(uint i){
+    return i + MIN_VEL;
 }

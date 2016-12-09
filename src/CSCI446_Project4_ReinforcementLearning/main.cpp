@@ -20,16 +20,16 @@ int main(int argc, char *argv[]) {
     // Q_INIT_RESOURCE(resfile);
 
     string dir = "Tracks/";
-    string filename = "R-track.txt";
+    string filename = "L-track.txt";
     QApplication app(argc, argv);
     World * world = new World(dir, filename);
-    
+
     sleep(1);
-    
-    DumbAgent * da = new DumbAgent;
-    Engine engine(world,da,true);
-    engine.run();
-    
+
+    QLearningAgent * da = new QLearningAgent(world->world_vec.size(), world->world_vec[0].size(), 0.1, 0.9);
+    Engine engine(world, da, false);
+    engine.run(true, 100000);
+
     // create and show your widgets here
 
     return app.exec();
