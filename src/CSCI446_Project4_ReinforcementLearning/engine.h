@@ -17,6 +17,13 @@
 #include "world_gen.h"
 #include "agent.h"
 
+#define MAX_VEL 5
+#define MIN_VEL -5
+#define MAX_ACC 1
+#define MIN_ACC -1
+#define NUM_VEL MAX_VEL - MIN_VEL + 1
+#define NUM_ACC MAX_ACC - MIN_ACC + 1
+
 class Engine;
 
 class Engine {
