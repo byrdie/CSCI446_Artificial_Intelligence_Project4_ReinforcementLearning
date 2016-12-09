@@ -22,7 +22,15 @@ opos(QNULL, QNULL), ovel(QNULL, QNULL), oacc(QNULL, QNULL) {
 Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const int reward, const bool terminate) {
 
     if (terminate) {
-
+        Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(0)][a2i(0)];
     }
 
+}
+
+uint QLearningAgent::a2i(int a){   
+    return a - MIN_ACC; 
+}
+
+uint QLearningAgent::v2i(int v){
+    return v - MIN_VEL;
 }

@@ -36,6 +36,8 @@ private:
     int orwd;       // The old reward, a redefinition of r
     vector<vector<vector<vector<vector<vector<double>>>>>> Q;   // Table of Q-values, Q[s,a]
     vector<vector<vector<vector<vector<vector<uint>>>>>> N;     // Table of frequencies for state-action pairs, N[s,a]
+    uint a2i(int a);
+    uint v2i(int v);
 };
 
 #endif /* QLEARN_H */
