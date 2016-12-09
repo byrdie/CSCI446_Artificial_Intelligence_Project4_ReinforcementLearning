@@ -26,7 +26,7 @@ class QLearningAgent;
 class QLearningAgent : public Agent {
 public:
     QLearningAgent(uint xsize, uint ysize, double alp, double gam);
-    Point next_accel(const Point& pos, const Point& vel, const int reward, const bool terminate);
+    Point next_accel(const Point& pos, const Point& vel, const int rwd, const bool terminate);
 private:
     double alpha;
     double gamma;
