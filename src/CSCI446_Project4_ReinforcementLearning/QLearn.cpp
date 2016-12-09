@@ -27,6 +27,8 @@ Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const int r
 
 }
 
-Point QLearningAgent::exploration_function(const Point& pos, const Point& vel, const Point& action){
-    
+Point QLearningAgent::exploration_function(const Point& pos, const Point& vel, const Point& act){
+    if(N[pos.x][pos.y][vel.x][vel.y][act.x][act.y] > MAX_FREQ ){
+        
+    }
 }
