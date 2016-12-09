@@ -27,6 +27,9 @@ Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const int r
 
 }
 
+Point QLearningAgent::exploration_function(const Point& pos, const Point& vel, const Point& action){
+    
+}
 uint QLearningAgent::a2i(int a){   
     return a - MIN_ACC; 
 }
