@@ -39,6 +39,8 @@ private:
 
     
     Point exploration_function(const Point& pos, const Point& vel, const Point& action);
+    uint a2i(int a);
+    uint v2i(int v);
 };
 
 

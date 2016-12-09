@@ -22,7 +22,7 @@ opos(QNULL, QNULL), ovel(QNULL, QNULL), oacc(QNULL, QNULL) {
 Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const int reward, const bool terminate) {
 
     if (terminate) {
-
+        Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(0)][a2i(0)];
     }
 
 }
@@ -31,4 +31,11 @@ Point QLearningAgent::exploration_function(const Point& pos, const Point& vel, c
     if(N[pos.x][pos.y][vel.x][vel.y][act.x][act.y] > MAX_FREQ ){
         
     }
+}
+uint QLearningAgent::a2i(int a){   
+    return a - MIN_ACC; 
+}
+
+uint QLearningAgent::v2i(int v){
+    return v - MIN_VEL;
 }
