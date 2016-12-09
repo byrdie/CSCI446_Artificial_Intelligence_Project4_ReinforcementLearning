@@ -73,6 +73,8 @@ Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const int r
     ovel = vel;
     oacc = acc;
     orwd = rwd;
+    
+    return acc;
 
 }
 
