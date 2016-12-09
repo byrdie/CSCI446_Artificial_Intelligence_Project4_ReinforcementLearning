@@ -25,7 +25,11 @@ public:
 private:
     vector<vector<vector<double>>> Q;   // Table of Q-values, Q[s,a]
     vector<vector<vector<uint>>> N;     // Table of frequencies for state-action pairs, N[s,a]
+    uint max_freq = 3;
+    
+    Point exploration_function(const Point& pos, const Point& vel, const Point& action);
 };
+
 
 #endif /* QLEARN_H */
 

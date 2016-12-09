@@ -19,3 +19,7 @@ Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const int r
     return Point(1,1);
     
 }
+
+Point QLearningAgent::exploration_function(const Point& pos, const Point& vel, const Point& action){
+    
+}
