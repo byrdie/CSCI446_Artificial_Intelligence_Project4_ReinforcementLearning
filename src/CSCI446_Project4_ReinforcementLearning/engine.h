@@ -38,7 +38,7 @@ private:
     vector<Point> start_pos;
     vector<Point> pos_lst;
     vector<Point> vel_lst;
-    void move(const int reward, const bool terminal);
+    void move(const double reward, const bool terminal);
     int range(int arg, int n1, int n2);
 };
 

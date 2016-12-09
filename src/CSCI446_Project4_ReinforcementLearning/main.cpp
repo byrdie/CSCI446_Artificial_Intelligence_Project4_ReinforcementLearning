@@ -20,15 +20,17 @@ int main(int argc, char *argv[]) {
     // Q_INIT_RESOURCE(resfile);
 
     string dir = "Tracks/";
-    string filename = "L-track.txt";
+    string filename = "R-track_short.txt";
     QApplication app(argc, argv);
     World * world = new World(dir, filename);
 
     sleep(1);
 
-    QLearningAgent * da = new QLearningAgent(world->world_vec.size(), world->world_vec[0].size(), 0.1, 0.9);
+    QLearningAgent * da = new QLearningAgent(world->world_vec.size(), world->world_vec[0].size(), 0.1, 0.99);
     Engine engine(world, da, false);
-    engine.run(true, 100000);
+    while(true){
+       engine.run(true, 100000) ;
+    }
 
     // create and show your widgets here
 
