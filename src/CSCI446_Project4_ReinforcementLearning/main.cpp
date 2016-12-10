@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
 
     sleep(1);
 
-    QLearningAgent * da = new QLearningAgent(world->world_vec.size(), world->world_vec[0].size(), 0.1, 0.99);
+    QLearningAgent * da = new QLearningAgent(world->world_vec.size(), world->world_vec[0].size(), 0.5, 0.99);
     Engine engine(world, da, false);
     while(true){
        engine.run(true, 100000) ;
