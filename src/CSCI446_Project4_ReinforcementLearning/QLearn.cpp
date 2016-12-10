@@ -9,8 +9,8 @@
 #include "QLearn.h"
 
 QLearningAgent::QLearningAgent(uint xsize, uint ysize, double alp, double gam) : Agent(),
-Q(xsize, vector<vector<vector<vector<vector<double>>>>>(ysize, vector<vector<vector<vector<double>>>>(NUM_VEL, vector<vector<vector<double>>>(NUM_VEL, vector<vector<double>>(NUM_ACC, vector<double>(NUM_ACC)))))),
-N(xsize, vector<vector<vector<vector<vector<uint>>>>>(ysize, vector<vector<vector<vector<uint>>>>(NUM_VEL, vector<vector<vector<uint>>>(NUM_VEL, vector<vector<uint>>(NUM_ACC, vector<uint>(NUM_ACC)))))),
+Q(xsize, vector<vector<vector<vector<vector<double>>>>>(ysize, vector<vector<vector<vector<double>>>>(NUM_VEL, vector<vector<vector<double>>>(NUM_VEL, vector<vector<double>>(NUM_ACC, vector<double>(NUM_ACC, 0.0)))))),
+N(xsize, vector<vector<vector<vector<vector<uint>>>>>(ysize, vector<vector<vector<vector<uint>>>>(NUM_VEL, vector<vector<vector<uint>>>(NUM_VEL, vector<vector<uint>>(NUM_ACC, vector<uint>(NUM_ACC,0.0)))))),
 opos(QNULL, QNULL), ovel(QNULL, QNULL), oacc(QNULL, QNULL) {
 
     alpha = alp;
@@ -19,7 +19,7 @@ opos(QNULL, QNULL), ovel(QNULL, QNULL), oacc(QNULL, QNULL) {
 
 }
 
-Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const int rwd, const bool terminate) {
+Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const double rwd, const bool terminate) {
 
     /* if Terminal?(s) then */
     if (terminate) {
@@ -35,12 +35,16 @@ Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const int r
         N[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)]++;
 
         /* Compute max_a' Q[s',a'] */
+        cout << "Compute max_a' Q[s',a']\n";
         double max_a_Q = 0.0;
         for (uint i = 0; i < NUM_ACC; i++) {
             for (uint j = 0; j < NUM_ACC; j++) {
                 double test = Q[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j];
+                cout << "    Testing Q[" << pos.x << "][" << pos.y << "][" << vel.x << "][" << vel.y << "][" << i2a(i) << "][" << i2a(j) << "] = " << test<< "\n";
                 if (test > max_a_Q) {
                     max_a_Q = test;
+                } else if(test = max_a_Q){
+                    
                 }
             }
         }
@@ -58,19 +62,28 @@ Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const int r
     }
 
     /* Compute argmax_a' f(Q[s',a'], N[s',a']) */
+    cout << "Compute argmax_a' f(Q[s',a'], N[s',a'])\n";
     double max_a_f = -1e6;
-    Point acc(QNULL, QNULL);
+    vector<Point> acc_lst;
     for (uint i = 0; i < NUM_ACC; i++) {
         for (uint j = 0; j < NUM_ACC; j++) {
             double test = exploration_function(Q[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j], N[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j]);
+            
+            cout << "    Testing f(Q[" << pos.x << "][" << pos.y << "][" << vel.x << "][" << vel.y << "][" << i2a(i) << "][" << i2a(j) << "], " << "N[" << pos.x << "][" << pos.y << "][" << vel.x << "][" << vel.y << "][" << i2a(i) << "][" << i2a(j) << "]) = " << test<< "\n";
+            
             if (test > max_a_f) {
                 max_a_f = test;
-                acc.x = i2a(i);
-                acc.y = i2a(j);
+                acc_lst.clear();
+                acc_lst.push_back(Point(i2a(i),i2a(j)));
+            } else if(test = max_a_f){
+                acc_lst.push_back(Point(i2a(i),i2a(j)));
             }
         }
     }
 
+    /* select a ranom acceleration from the argmax'es */
+    cout << acc_lst.size() << endl;
+    Point acc = acc_lst[rand() % acc_lst.size()];
 
     /* update variables */
     opos = pos;
@@ -79,6 +92,7 @@ Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const int r
     orwd = rwd;
     
     cout << "Requested ax = " << acc.x << ", ay = " << acc.y << endl;
+    cout << "______________________________________________________\n";
 
     return acc;
 

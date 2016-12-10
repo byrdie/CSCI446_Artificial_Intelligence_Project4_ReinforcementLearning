@@ -17,8 +17,8 @@
 #include <climits>
 
 #define QNULL INT_MAX
-#define MAX_FREQ 3
-#define MAX_UTILITY 0.1
+#define MAX_FREQ 1
+#define MAX_UTILITY -0.25
 class QLearningAgent;
 
 #include "agent.h"
@@ -27,14 +27,14 @@ class QLearningAgent;
 class QLearningAgent : public Agent {
 public:
     QLearningAgent(uint xsize, uint ysize, double alp, double gam);
-    Point next_accel(const Point& pos, const Point& vel, const int rwd, const bool terminate);
+    Point next_accel(const Point& pos, const Point& vel, const double rwd, const bool terminate);
 private:
     double alpha;
     double gamma;
     Point opos;     // The old position, a component of s
     Point ovel;     // The old velocity, a component of s
     Point oacc;     // The old acceleration, redefinition of a
-    int orwd;       // The old reward, a redefinition of r
+    double orwd;       // The old reward, a redefinition of r
     vector<vector<vector<vector<vector<vector<double>>>>>> Q;   // Table of Q-values, Q[s,a]
     vector<vector<vector<vector<vector<vector<uint>>>>>> N;     // Table of frequencies for state-action pairs, N[s,a]
 

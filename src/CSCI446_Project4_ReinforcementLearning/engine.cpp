@@ -11,7 +11,7 @@ Engine::Engine(World * world, Agent * agent, bool crash_restart) {
     restart = crash_restart;
     rt = world;
     car = agent;
-
+    
     /* Find the starting positions */
 
     for (uint i = 0; i < rt->world_vec.size(); i++) {
@@ -22,6 +22,11 @@ Engine::Engine(World * world, Agent * agent, bool crash_restart) {
             }
         }
     }
+    /* add car to the board */
+
+    car_tile = rt->qt_world->set_tile(0, 0, CAR);
+    qApp->processEvents();
+
 
 
 }
@@ -35,11 +40,12 @@ void Engine::run(bool gui, uint slp_t) {
     Point start_vel(0, 0);
     vel_lst.push_back(start_vel);
 
-    /* add car to the board */
-    if (gui) {
-        car_tile = rt->qt_world->set_tile(pos_lst.back().x, pos_lst.back().y, CAR);
-        qApp->processEvents();
-    }
+    rt->qt_world->move_tile(car_tile, vel_lst.back().x, vel_lst.back().y);
+    qApp->processEvents();
+    qApp->processEvents();
+    usleep(slp_t);
+
+
 
 
 
@@ -47,7 +53,7 @@ void Engine::run(bool gui, uint slp_t) {
     while (true) {
 
         /* Have the agent carry out the next move */
-        move(-1, false);
+        move(-1.0, false);
         Point pos = pos_lst.back(); // Update the current position
         Point vel = vel_lst.back();
         if (gui) {
@@ -57,6 +63,66 @@ void Engine::run(bool gui, uint slp_t) {
             usleep(slp_t);
         }
 
+        if (rt->world_vec[pos.x][pos.y] == FINISH) {
+            move(1.0, true);
+            pos_lst.clear();
+            vel_lst.clear();
+            return; // If so, break out of the loop
+        } else {
+            Point opos = pos_lst[pos_lst.size() - 2];
+            //        Point ovel = vel_lst[vel_lst.size() - 2];
+
+            int dx = (vel.x > 0) - (vel.x < 0);
+            int dy = (vel.y > 0) - (vel.y < 0);
+            cout << "dx = " << dx << ", dy = " << dy << endl;
+            cout << "pos.x = " << pos.x << ", pos.y = " << pos.y << endl;
+            cout << "opos.x = " << opos.x << ", opos.y = " << opos.y << endl;
+            while ((opos.x != pos.x) and (opos.y != pos.y)) {
+
+
+                if (rt->world_vec[opos.x][opos.y] == FINISH) {
+                    move(1.0, true);
+                    pos_lst.clear();
+                    vel_lst.clear();
+                    return; // If so, break out of the loop
+                }
+
+                opos.x += dx;
+                opos.y += dy;
+
+            }
+        }
+
+
+
+
+        //        do {
+        //
+        //            if (fr_x != 0) {
+        //                opos.x += (fr_x > 0) - (fr_x < 0);
+        //            }
+        //
+        //            do {
+        //
+        //                if (fr_y != 0) {
+        //                    opos.y += (fr_y > 0) - (fr_y < 0);
+        //                }
+        //
+        //                if (rt->world_vec[opos.x][opos.y] == FINISH) {
+        //                    move(1.0, true);
+        //                    pos_lst.clear();
+        //                    vel_lst.clear();
+        //                    return; // If so, break out of the loop
+        //                }
+        //
+        //
+        //            } while (opos.y != pos.y);
+        //
+        //
+        //        } while (opos.x != pos.x);
+
+
+        /* Check if the agent has reached the finish line */
 
 
 
@@ -81,15 +147,13 @@ void Engine::run(bool gui, uint slp_t) {
 
         }
 
-        /* Check if the agent has reached the finish line */
-        if (rt->world_vec[pos.x][pos.y] == FINISH) {
-            move(0, true);
-            break; // If so, break out of the loop
-        }
+
 
 
 
     }
+
+
 
 }
 
@@ -97,7 +161,7 @@ void Engine::run(bool gui, uint slp_t) {
  * Have the update the position and velocity based on the agent's requested
  * acceleration
  */
-void Engine::move(const int reward, const bool terminal) {
+void Engine::move(const double reward, const bool terminal) {
 
     Point pos = pos_lst.back();
     Point vel = vel_lst.back();
