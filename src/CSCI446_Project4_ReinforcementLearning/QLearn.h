@@ -18,7 +18,7 @@
 
 #define QNULL INT_MAX
 #define MAX_FREQ 1
-#define MAX_UTILITY -0.25
+#define MAX_UTILITY 1.0
 class QLearningAgent;
 
 #include "agent.h"
@@ -28,6 +28,7 @@ class QLearningAgent : public Agent {
 public:
     QLearningAgent(uint xsize, uint ysize, double alp, double gam);
     Point next_accel(const Point& pos, const Point& vel, const double rwd, const bool terminate);
+    void soft_reset();
 private:
     double alpha;
     double gamma;

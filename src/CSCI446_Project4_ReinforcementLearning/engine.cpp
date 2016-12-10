@@ -96,30 +96,7 @@ void Engine::run(bool gui, uint slp_t) {
 
 
 
-        //        do {
-        //
-        //            if (fr_x != 0) {
-        //                opos.x += (fr_x > 0) - (fr_x < 0);
-        //            }
-        //
-        //            do {
-        //
-        //                if (fr_y != 0) {
-        //                    opos.y += (fr_y > 0) - (fr_y < 0);
-        //                }
-        //
-        //                if (rt->world_vec[opos.x][opos.y] == FINISH) {
-        //                    move(1.0, true);
-        //                    pos_lst.clear();
-        //                    vel_lst.clear();
-        //                    return; // If so, break out of the loop
-        //                }
-        //
-        //
-        //            } while (opos.y != pos.y);
-        //
-        //
-        //        } while (opos.x != pos.x);
+
 
 
         /* Check if the agent has reached the finish line */
