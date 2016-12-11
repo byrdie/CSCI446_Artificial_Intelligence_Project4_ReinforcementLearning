@@ -15,10 +15,11 @@
 #define QLEARN_H
 
 #include <climits>
+#include <float.h>
 
 #define QNULL INT_MAX
-#define MAX_FREQ 1
-#define MAX_UTILITY 0.1
+#define MAX_FREQ 3
+#define MAX_UTILITY 1.0
 class QLearningAgent;
 
 #include "agent.h"
@@ -27,7 +28,7 @@ class QLearningAgent;
 class QLearningAgent : public Agent {
 public:
     QLearningAgent(uint xsize, uint ysize, double alp, double gam);
-    Point next_accel(const Point& pos, const Point& vel, const double rwd, const bool terminate);
+    Point next_accel(const Point& pos, const Point& vel, const double rwd, const bool terminate, bool debug);
     void soft_reset();
 private:
     double alpha;
