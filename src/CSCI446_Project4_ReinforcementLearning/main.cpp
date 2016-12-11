@@ -28,20 +28,32 @@ int main(int argc, char *argv[]) {
     World * world = new World(dir, filename);
 
     bool restart = false;
-    bool gui = false;
+    bool gui = true;
     uint n_steps = 5e5;
 
     QLearningAgent * da = new QLearningAgent(world->world_vec.size(), world->world_vec[0].size(), 1e-6, 0.99);
     Engine engine(world, da, restart);
     ofstream data;
     data.open("qlearn.dat");
-    for (uint i = 0; i < n_steps; i++) {
-        data << engine.run(gui, 0) << endl;
+
+    //following for loop incrementally makes larger tracks
+    uint step_size = 4;
+    while (world->max_layer - step_size > 16) {
+        world->world_vec = world->get_train_set(world->world_vec, world->max_layer - step_size);
+        engine.update_start();
+        for (uint i = 0; i < 100; i++) {
+            
+            data << engine.run(gui, 0) << endl;
+        }
+        step_size += 4;
     }
+
 
     filename = "R-track_longer.txt";
     world = new World(dir, filename);
     Engine engine2(world, da, restart);
+
+
     for (uint i = 0; i < 2 * n_steps; i++) {
         data << engine2.run(gui, 0) << endl;
     }
