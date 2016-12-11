@@ -19,7 +19,7 @@ opos(QNULL, QNULL), ovel(QNULL, QNULL), oacc(QNULL, QNULL) {
 
 }
 
-Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const double rwd, const bool terminate) {
+Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const double rwd, const bool terminate, bool debug) {
 
     /* if Terminal?(s) then */
     if (terminate) {
@@ -35,76 +35,79 @@ Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const doubl
         N[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)]++;
 
         /* Compute max_a' Q[s',a'] */
-        cout << "Compute max_a' Q[s',a']\n";
-        double max_a_Q = -1e6;
+        if (debug) cout << "Compute max_a' Q[s',a']\n";
+        double max_a_Q = -DBL_MAX;
         for (uint i = 0; i < NUM_ACC; i++) {
             for (uint j = 0; j < NUM_ACC; j++) {
-                double test = Q[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j];
-                cout << "    Testing Q[" << pos.x << "][" << pos.y << "][" << vel.x << "][" << vel.y << "][" << i2a(i) << "][" << i2a(j) << "] = " << test << "\n";
-                if (test > max_a_Q) {
-                    max_a_Q = test;
+                if (j != a2i(0) and i != a2i(0)) {
+                    double test = Q[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j];
+                    if (debug) cout << "    Testing Q[" << pos.x << "][" << pos.y << "][" << vel.x << "][" << vel.y << "][" << i2a(i) << "][" << i2a(j) << "] = " << test << "\n";
+                    if (test > max_a_Q) {
+                        max_a_Q = test;
+                    }
                 }
             }
         }
 
-        cout << "max_a' Q[" << pos.x << "][" << pos.y << "][" << vel.x << "][" << vel.y << "][" << "ax'" << "][" << "ay'" << "] = " << max_a_Q << "\n";
+        if (debug) cout << "max_a' Q[" << pos.x << "][" << pos.y << "][" << vel.x << "][" << vel.y << "][" << "ax'" << "][" << "ay'" << "] = " << max_a_Q << "\n"
 
 
-        cout << "Q[" << opos.x << "][" << opos.y << "][" << ovel.x << "][" << ovel.y << "][" << oacc.x << "][" << oacc.y << "] = "
-                << Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)] << "\n";
-        
-        cout << "N[" << opos.x << "][" << opos.y << "][" << ovel.x << "][" << ovel.y << "][" << oacc.x << "][" << oacc.y << "] = "
-                << N[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)] << "\n";
-        
-        cout << "r = " << orwd <<"\n";
+                << "Q[" << opos.x << "][" << opos.y << "][" << ovel.x << "][" << ovel.y << "][" << oacc.x << "][" << oacc.y << "] = "
+                << Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)] << "\n"
 
-        cout << "Q[" << opos.x << "][" << opos.y << "][" << ovel.x << "][" << ovel.y << "][" << oacc.x << "][" << oacc.y << "] "
+            << "N[" << opos.x << "][" << opos.y << "][" << ovel.x << "][" << ovel.y << "][" << oacc.x << "][" << oacc.y << "] = "
+                << N[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)] << "\n"
+
+            << "r = " << orwd << "\n"
+
+                << "Q[" << opos.x << "][" << opos.y << "][" << ovel.x << "][" << ovel.y << "][" << oacc.x << "][" << oacc.y << "] "
                 << " = Q[" << opos.x << "][" << opos.y << "][" << ovel.x << "][" << ovel.y << "][" << oacc.x << "][" << oacc.y << "]"
                 << " + alpha * N[" << opos.x << "][" << opos.y << "][" << ovel.x << "][" << ovel.y << "][" << oacc.x << "][" << oacc.y << "] "
                 << "(r + gamma * max_a' Q[" << pos.x << "][" << pos.y << "][" << vel.x << "][" << vel.y << "][" << "ax'" << "][" << "ay'" << "] "
-                << "- Q[" << opos.x << "][" << opos.y << "][" << ovel.x << "][" << ovel.y << "][" << oacc.x << "][" << oacc.y <<"]\n"
-                
-                << "    = (" << Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)] << ")"
-                << " + (" << alpha << ")(" << N[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)] << ")"
-                << "((" << orwd << ") + (" << gamma << ")(" << max_a_Q << ") - (" << Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)] << "))\n";
+                << "- Q[" << opos.x << "][" << opos.y << "][" << ovel.x << "][" << ovel.y << "][" << oacc.x << "][" << oacc.y << "]\n"
 
-                
+                << "    = (" << Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)] << ")"
+            << " + (" << alpha << ")(" << N[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)] << ")"
+            << "((" << orwd << ") + (" << gamma << ")(" << max_a_Q << ") - (" << Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)] << "))\n";
+
+
 
         /* Evaluate the update rule */
         /* Q[s,a] <- Q[s,a] + alpha (N[s,a])(r + gamma max_a' Q[s',a'] - Q[s,a]) */
         Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)]
                 = Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)]
                 + alpha * N[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)]
-                * (orwd + gamma * max_a_Q - Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)]);
+                * (rwd + gamma * max_a_Q - Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)]);
 
 
-        cout << "    = " << Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)] << "\n";
-        
+        if (debug) cout << "    = " << Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)] << "\n";
+
 
     }
 
     /* Compute argmax_a' f(Q[s',a'], N[s',a']) */
-    cout << "Compute argmax_a' f(Q[s',a'], N[s',a'])\n";
-    double max_a_f = -1e6;
+    if (debug) cout << "Compute argmax_a' f(Q[s',a'], N[s',a'])\n";
+    double max_a_f = -DBL_MAX;
     vector<Point> acc_lst;
     for (uint i = 0; i < NUM_ACC; i++) {
         for (uint j = 0; j < NUM_ACC; j++) {
-            double test = exploration_function(Q[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j], N[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j]);
+            if (j != a2i(0) and i != a2i(0)) {
+                double test = exploration_function(Q[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j], N[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j]);
 
-            cout << "    Testing f(Q[" << pos.x << "][" << pos.y << "][" << vel.x << "][" << vel.y << "][" << i2a(i) << "][" << i2a(j) << "], " << "N[" << pos.x << "][" << pos.y << "][" << vel.x << "][" << vel.y << "][" << i2a(i) << "][" << i2a(j) << "]) = " << test << "\n";
+                if (debug) cout << "    Testing f(Q[" << pos.x << "][" << pos.y << "][" << vel.x << "][" << vel.y << "][" << i2a(i) << "][" << i2a(j) << "], " << "N[" << pos.x << "][" << pos.y << "][" << vel.x << "][" << vel.y << "][" << i2a(i) << "][" << i2a(j) << "]) = " << test << "\n";
 
-            if (test > max_a_f) {
-                max_a_f = test;
-                acc_lst.clear();
-                acc_lst.push_back(Point(i2a(i), i2a(j)));
-            } else if (test == max_a_f) {
-                acc_lst.push_back(Point(i2a(i), i2a(j)));
+                if (test > max_a_f) {
+                    max_a_f = test;
+                    acc_lst.clear();
+                    acc_lst.push_back(Point(i2a(i), i2a(j)));
+                } else if (test == max_a_f) {
+                    acc_lst.push_back(Point(i2a(i), i2a(j)));
+                }
             }
         }
     }
 
     /* select a ranom acceleration from the argmax'es */
-    cout << acc_lst.size() << endl;
     Point acc = acc_lst[rand() % acc_lst.size()];
 
     /* update variables */
@@ -113,18 +116,23 @@ Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const doubl
     oacc = acc;
     orwd = rwd;
 
-    cout << "Requested ax = " << acc.x << ", ay = " << acc.y << endl;
-    cout << "______________________________________________________\n";
+    if (debug) cout << "Requested ax = " << acc.x << ", ay = " << acc.y << endl;
+    if (debug) cout << "______________________________________________________\n";
 
     return acc;
 
 }
 
-void QLearningAgent::soft_reset(){
-    
-//    opos.x = QNULL;
-    
-    
+void QLearningAgent::soft_reset() {
+
+    opos.x = QNULL;
+    opos.y = QNULL;
+    ovel.x = QNULL;
+    ovel.y = QNULL;
+    oacc.x = QNULL;
+    oacc.y = QNULL;
+
+
 }
 
 double QLearningAgent::exploration_function(double q_val, uint freq) {

@@ -29,7 +29,7 @@ class Engine;
 class Engine {
 public:
     Engine(World * world, Agent * agent, bool crash_restart);
-    void run(bool gui, uint slp_t);
+    uint run(bool gui, uint slp_t);
 private:
     bool restart;
     World * rt;

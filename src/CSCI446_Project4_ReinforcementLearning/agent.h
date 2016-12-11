@@ -14,7 +14,7 @@
 class Agent {
 public:
     Agent();
-    virtual Point next_accel(const Point& pos, const Point& vel, const double reward, const bool terminate) = 0;
+    virtual Point next_accel(const Point& pos, const Point& vel, const double reward, const bool terminate, bool debug) = 0;
     virtual void soft_reset() = 0;
     
 };
@@ -22,7 +22,7 @@ public:
 class DumbAgent : public Agent{
 public:
     DumbAgent();
-    Point next_accel(const Point& pos, const Point& vel, const double reward, const bool terminate);
+    Point next_accel(const Point& pos, const Point& vel, const double reward, const bool terminate, bool debug);
     void soft_reset();
     
 };

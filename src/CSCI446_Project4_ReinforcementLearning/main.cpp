@@ -14,23 +14,39 @@
 #include "main.h"
 
 #include <QApplication>
+#include <fstream>
 
 int main(int argc, char *argv[]) {
     // initialize resources, if needed
     // Q_INIT_RESOURCE(resfile);
+
+    init_rand();
 
     string dir = "Tracks/";
     string filename = "R-track_short.txt";
     QApplication app(argc, argv);
     World * world = new World(dir, filename);
 
-    sleep(1);
+    bool restart = false;
+    bool gui = false;
+    uint n_steps = 5e5;
 
-    QLearningAgent * da = new QLearningAgent(world->world_vec.size(), world->world_vec[0].size(), 0.5, 0.99);
-    Engine engine(world, da, false);
-    while(true){
-       engine.run(true, 100000) ;
+    QLearningAgent * da = new QLearningAgent(world->world_vec.size(), world->world_vec[0].size(), 1e-6, 0.99);
+    Engine engine(world, da, restart);
+    ofstream data;
+    data.open("qlearn.dat");
+    for (uint i = 0; i < n_steps; i++) {
+        data << engine.run(gui, 0) << endl;
     }
+
+    filename = "R-track_longer.txt";
+    world = new World(dir, filename);
+    Engine engine2(world, da, restart);
+    for (uint i = 0; i < 2 * n_steps; i++) {
+        data << engine2.run(gui, 0) << endl;
+    }
+
+    cout << "finished" << endl;
 
     // create and show your widgets here
 
