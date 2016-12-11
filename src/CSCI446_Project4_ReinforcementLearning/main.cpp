@@ -32,7 +32,8 @@ int main(int argc, char *argv[]) {
     uint n_steps = 5e5;
 
     QLearningAgent * da = new QLearningAgent(world->world_vec.size(), world->world_vec[0].size(), 1e-6, 0.99);
-    Engine engine(world, da, restart);
+    RandAgent * pa = new RandAgent();
+    Engine engine(world, pa, restart);
     ofstream data;
     data.open("qlearn.dat");
 
