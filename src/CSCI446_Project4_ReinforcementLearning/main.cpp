@@ -27,11 +27,20 @@ int main(int argc, char *argv[]) {
     sleep(1);
 
     QLearningAgent * da = new QLearningAgent(world->world_vec.size(), world->world_vec[0].size(), 0.5, 0.99);
+    world->world_vec = world->get_train_set(world->world_vec, world->max_layer-5);
     Engine engine(world, da, false);
-    while(true){
-       engine.run(true, 100000) ;
-    }
+//    while(true){
+//       engine.run(true, 100000) ;
+//    }
 
+    for(uint i = 0; i < 1; i++){
+        engine.run(true, 100000);
+    }
+    world->world_vec = world->get_train_set(world->world_vec, world->max_layer-40);
+    engine.update_start();
+    for(uint i = 0; i < 1; i++){
+        engine.run(true, 100000);
+    }
     // create and show your widgets here
 
     return app.exec();

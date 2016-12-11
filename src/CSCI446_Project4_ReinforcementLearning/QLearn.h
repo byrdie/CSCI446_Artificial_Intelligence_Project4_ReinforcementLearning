@@ -18,7 +18,7 @@
 
 #define QNULL INT_MAX
 #define MAX_FREQ 1
-#define MAX_UTILITY 1.0
+#define MAX_UTILITY 0.1
 class QLearningAgent;
 
 #include "agent.h"

@@ -11,7 +11,7 @@ Engine::Engine(World * world, Agent * agent, bool crash_restart) {
     restart = crash_restart;
     rt = world;
     car = agent;
-    
+    //rt->world_vec = rt->get_train_set(rt->world_vec, rt->max_layer-1);
     /* Find the starting positions */
 
     for (uint i = 0; i < rt->world_vec.size(); i++) {
@@ -183,5 +183,17 @@ int Engine::range(int arg, int n1, int n2) {
 
     return max(min(arg, n_max), n_min);
 
+}
+
+void Engine::update_start(){
+    start_pos.clear();
+    for (uint i = 0; i < rt->world_vec.size(); i++) {
+        for (uint j = 0; j < rt->world_vec[i].size(); j++) {
+            if (rt->world_vec[i][j] == START) {
+                Point spos(i, j);
+                start_pos.push_back(spos);
+            }
+        }
+    }
 }
 

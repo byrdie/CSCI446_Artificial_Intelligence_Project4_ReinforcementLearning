@@ -30,6 +30,7 @@ class Engine {
 public:
     Engine(World * world, Agent * agent, bool crash_restart);
     void run(bool gui, uint slp_t);
+    void update_start();
 private:
     bool restart;
     World * rt;
@@ -40,6 +41,7 @@ private:
     vector<Point> vel_lst;
     void move(const double reward, const bool terminal);
     int range(int arg, int n1, int n2);
+    
 };
 
 #endif /* ENGINE_H */
