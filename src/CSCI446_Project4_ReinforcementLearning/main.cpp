@@ -23,26 +23,30 @@ int main(int argc, char *argv[]) {
     init_rand();
 
     string dir = "Tracks/";
-    string filename = "R-track_short.txt";
+    //    string filename = "R-track_short.txt";
+    string filename = "L-track.txt";
+
     QApplication app(argc, argv);
     World * world = new World(dir, filename);
 
     bool restart = false;
     bool gui = false;
-    uint n_steps = 5e5;
+    uint n_steps = 1e7;
 
-    QLearningAgent * da = new QLearningAgent(world->world_vec.size(), world->world_vec[0].size(), 1e-6, 0.99);
-    Engine engine(world, da, restart);
     ofstream data;
     data.open("qlearn.dat");
-    for (uint i = 0; i < n_steps; i++) {
-        data << engine.run(gui, 0) << endl;
-    }
 
-    filename = "R-track_longer.txt";
+    QLearningAgent * da = new QLearningAgent(world->world_vec.size(), world->world_vec[0].size(), 1e-6, 0.99);
+
+    //    Engine engine(world, da, restart);
+    //    for (uint i = 0; i < n_steps; i++) {
+    //        data << engine.run(gui, 0) << endl;
+    //    }
+
+//    filename = "R-track_longer.txt";
     world = new World(dir, filename);
     Engine engine2(world, da, restart);
-    for (uint i = 0; i < 2 * n_steps; i++) {
+    for (uint i = 0; i < n_steps; i++) {
         data << engine2.run(gui, 0) << endl;
     }
 
