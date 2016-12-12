@@ -23,43 +23,60 @@ int main(int argc, char *argv[]) {
     init_rand();
 
     string dir = "Tracks/";
-    string filename = "O-track.txt";
+    string filename = "R-track.txt";
     QApplication app(argc, argv);
     World * world = new World(dir, filename);
 
     bool restart = false;
     bool gui = true;
     uint n_steps = 5e5;
+    
+    Value_ItAgent * va = new Value_ItAgent(world->world_vec.size(), world->world_vec[0].size(), 0, .5, .00000000001);
+    Engine engine1(world, va, restart);
 
-    QLearningAgent * da = new QLearningAgent(world->world_vec.size(), world->world_vec[0].size(), 1e-6, 0.99);
-    RandAgent * pa = new RandAgent();
-    Engine engine(world, pa, restart);
-    ofstream data;
-    data.open("qlearn.dat");
-
-    //following for loop incrementally makes larger tracks
-    uint step_size = 4;
-    while (world->max_layer - step_size > 16) {
-        world->world_vec = world->get_train_set(world->world_vec, world->max_layer - step_size);
-        engine.update_start();
-        for (uint i = 0; i < 100; i++) {
-            
-            data << engine.run(gui, 0) << endl;
+    va->val_iteration(world);
+    for(uint i = 0; i < world->world_vec.size(); i++){
+        for(uint j = 0; j <world->world_vec[0].size(); j++){
+            if(world->world_vec[i][j] == TRACK || world->world_vec[i][j] == START ){
+              //  va->print_max_util(i,j,va->v2i(0),va->v2i(-1));
+            }
         }
-        step_size += 4;
+    }
+    while(true){
+    engine1.run(gui, 500000);
     }
 
 
-    filename = "R-track_longer.txt";
-    world = new World(dir, filename);
-    Engine engine2(world, da, restart);
 
-
-    for (uint i = 0; i < 2 * n_steps; i++) {
-        data << engine2.run(gui, 0) << endl;
-    }
-
-    cout << "finished" << endl;
+//    QLearningAgent * da = new QLearningAgent(world->world_vec.size(), world->world_vec[0].size(), 1e-6, 0.99);
+//    RandAgent * pa = new RandAgent();
+//    Engine engine(world, pa, restart);
+//    ofstream data;
+//    data.open("qlearn.dat");
+//
+//    //following for loop incrementally makes larger tracks
+//    uint step_size = 4;
+//    while (world->max_layer - step_size > 16) {
+//        world->world_vec = world->get_train_set(world->world_vec, world->max_layer - step_size);
+//        engine.update_start();
+//        for (uint i = 0; i < 100; i++) {
+//
+//            data << engine.run(gui, 0) << endl;
+//        }
+//        step_size += 4;
+//    }
+//
+//
+//    filename = "R-track_longer.txt";
+//    world = new World(dir, filename);
+//    Engine engine2(world, da, restart);
+//
+//
+//    for (uint i = 0; i < 2 * n_steps; i++) {
+//        data << engine2.run(gui, 0) << endl;
+//    }
+//
+//    cout << "finished" << endl;
 
     // create and show your widgets here
 

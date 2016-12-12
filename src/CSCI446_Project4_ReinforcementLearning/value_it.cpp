@@ -12,19 +12,20 @@ opos(QNULL, QNULL), ovel(QNULL, QNULL), oacc(QNULL, QNULL) {
 
 }
 
-Point Value_ItAgent::next_accel(const Point& pos, const Point& vel, const double reward, const bool terminate) {
-    Point accel(0,0);
-    for(uint i = 0; i < NUM_ACC; i++){
-        for(uint j = 0; j <NUM_ACC; j++){
-            if(U[pos.x][pos.y][vel.x][vel.y][i][j] > U[pos.x][pos.y][vel.x][vel.y][accel.x][accel.y]){
+Point Value_ItAgent::next_accel(const Point& pos, const Point& vel, const double reward, const bool terminate, bool debug) {
+    Point accel(0, 0);
+    for (uint i = 0; i < NUM_ACC; i++) {
+        for (uint j = 0; j < NUM_ACC; j++) {
+            if (U[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j] > U[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][accel.x][accel.y]) {
                 accel.x = i;
                 accel.y = j;
             }
         }
     }
-    
+
     accel.x = i2a(accel.x);
     accel.y = i2a(accel.y);
+    cout << accel.x << ","<<accel.y<<endl;
     return accel;
 
     //    do {
@@ -83,15 +84,17 @@ Point Value_ItAgent::next_accel(const Point& pos, const Point& vel, const double
 }
 
 void Value_ItAgent::val_iteration(World * world) {
-    
+
     //gamma, epsilon, and delta are class variables
     //initialize rewards
     reward = get_reward(world->world_vec);
     //get list of states that contain track
+    wd = world;
     vector <vector < uint>>track_vals = track_val(world->world_vec);
-    
+
 
     do {
+        cout << "_____________" << endl;
         //update u and set delta back to zero
         U = UP;
         delta = 0;
@@ -105,14 +108,21 @@ void Value_ItAgent::val_iteration(World * world) {
                     for (uint l = 0; l < NUM_ACC; l++) {
                         for (uint m = 0; m < NUM_ACC; m++) {
                             //calculate if acceleration works
-                            double works = .8 *(utility(track_vals[i][0], track_vals[i][1], j, k, l, m));
+                            double works = .8 * (utility(track_vals[i][0], track_vals[i][1], j, k, l, m));
                             //calculate if acceleration does not work
                             double d_work = .2 * (utility(track_vals[i][0], track_vals[i][1], j, k, 0, 0));
                             //set utility using bellman equation
-                            UP[track_vals[i][0]][track_vals[i][1]][j][k][l][m] = reward[track_vals[i][0]][track_vals[i][1]] + (gamma *(works + d_work));
+                            UP[track_vals[i][0]][track_vals[i][1]][j][k][l][m] = reward[track_vals[i][0]][track_vals[i][1]] + (gamma * (works + d_work));
                             //update delta
-                            if((UP[track_vals[i][0]][track_vals[i][1]][j][k][l][m] - U[track_vals[i][0]][track_vals[i][1]][j][k][l][m]) > delta){
+
+                            if ((UP[track_vals[i][0]][track_vals[i][1]][j][k][l][m] - U[track_vals[i][0]][track_vals[i][1]][j][k][l][m]) > delta) {
                                 delta = UP[track_vals[i][0]][track_vals[i][1]][j][k][l][m] - U[track_vals[i][0]][track_vals[i][1]][j][k][l][m];
+
+                            }
+                            if ((i2v(j) == 0)&& (i2v(k) == 5)) {
+                                cout << "accel " << i2a(l) << "," << i2a(m) << endl;
+                                cout << "point " << track_vals[i][0] << "," << track_vals[i][1] << endl;
+                                cout << works << endl << endl;
                             }
                         }
                     }
@@ -122,7 +132,8 @@ void Value_ItAgent::val_iteration(World * world) {
                 }
             }
         }
-    } while (delta < (epsilon*(1-gamma)/gamma));
+
+    } while (delta > (epsilon * (1 - gamma) / gamma));
 
 }
 
@@ -131,47 +142,160 @@ double Value_ItAgent::utility(uint x, uint y, uint vel_x, uint vel_y, uint act_x
     vector<int> vels = calc_vel(i2v(vel_x), i2v(vel_y), i2a(act_x), i2a(act_y));
     int i_vel_x = vels[0];
     int i_vel_y = vels[1];
-     
-    
     int i_x = x + i_vel_x;
-    int i_y = x + i_vel_y;
-    if(i_x > U.size() || i_y > U[0].size() || i_x < 0 || i_y < 0){
-        
-    }else{
-        x = uint(i_x);
-        y = uint(i_y);
-        vel_x = v2i(i_vel_x);
-        vel_y = v2i(i_vel_y);
-        
-        double max_util = U[x][y][vel_x][vel_y][0][0];
-        for(uint i = 0; i < NUM_ACC; i++){
-            for(uint j = 0; j < NUM_ACC; i++){
-                if (max_util < U[x][y][vel_x][vel_y][i][j]){
-                    max_util = U[x][y][vel_x][vel_y][i][j];
+    int i_y = y + i_vel_y;
+    
+//    if (x == 23 && y == 18 && i2v(vel_x) == 0 && i2v(vel_y) == 0 && i2a(act_x) == 1 && i2a(act_y) == 1) {
+//        cout << i_x << ", " << i_vel_y << endl;
+//    }
+
+
+    if (i_x >= U.size() || i_y >= U[0].size() || i_x < 0 || i_y < 0) {
+        if (did_finish(affected_squares(x, y, i_vel_x, i_vel_y))) {
+            return 1.0;
+        } else {
+            vel_x = 0;
+            vel_y = 0;
+
+            double max_util = U[x][y][vel_x][vel_y][0][0];
+
+            for (uint i = 0; i < NUM_ACC; i++) {
+                for (uint j = 0; j < NUM_ACC; j++) {
+
+                    //cout <<U[x][y][vel_x][vel_y][i].size() << endl;
+                    if (max_util < U[x][y][vel_x][vel_y][i][j]) {
+                        max_util = U[x][y][vel_x][vel_y][i][j];
+                    }
                 }
             }
+            return max_util;
         }
-        return max_util;
+
+    } else {
+        if (did_finish(affected_squares(x, y, i_vel_x, i_vel_y)) || wd->world_vec[i_x][i_y] == FINISH) {
+            return 1.0;
+
+        } else if (hit_wall(affected_squares(x, y, i_vel_x, i_vel_y))  || wd->world_vec[i_x][i_y] == WALL) {
+
+            double max_util = U[x][y][vel_x][vel_y][0][0];
+            for (uint i = 0; i < NUM_ACC; i++) {
+                for (uint j = 0; j < NUM_ACC; j++) {
+                    if (max_util < U[x][y][vel_x][vel_y][i][j]) {
+                        max_util = U[x][y][vel_x][vel_y][i][j];
+                    }
+                }
+            }
+            return max_util;
+        } else {
+            x = uint(i_x);
+            y = uint(i_y);
+            vel_x = v2i(i_vel_x);
+            vel_y = v2i(i_vel_y);
+            //cout << U.size() << endl;
+            //cout <<  x << ", " << y << ", " << i_vel_x << ", " << i_vel_y <<endl;
+            double max_util = U[x][y][vel_x][vel_y][0][0];
+            for (uint i = 0; i < NUM_ACC; i++) {
+                for (uint j = 0; j < NUM_ACC; j++) {
+                    if (max_util < U[x][y][vel_x][vel_y][i][j]) {
+                        max_util = U[x][y][vel_x][vel_y][i][j];
+                    }
+                }
+            }
+            return max_util;
+        }
     }
-    
+
 
 }
 
-vector<vector<uint>> Value_ItAgent::affected_squares(int x, int y, int acc_x, int acc_y){
-    vector<vector<uint>> aff_sqrs;
-    
-    if(acc_x > 0){
-        for(int i = 0; i <= acc_x; i++){
-             int t_y = floor((double)(acc_y/acc_x) * (double) (x+i));
+bool Value_ItAgent::did_finish(vector<vector<int>> crossed_states) {
+    for (uint i = 0; i < crossed_states.size(); i++) {
+        //cout <<crossed_states.size() << endl;
+        if (crossed_states[i][0] > 0 && crossed_states[i][1] > 0 && crossed_states[i][0] < wd->world_vec.size() && crossed_states[i][1] < wd->world_vec[0].size()) {
+            if (wd->world_vec[crossed_states[i][0]][crossed_states[i][1]] == FINISH) {
+
+                return true;
+
+            }
         }
     }
-    
-    if(acc_y > 0){
-        for(int i = 0; i <= acc_y; i++){
-             int t_x = floor((double)(1/(acc_y/acc_x)) * (double) (y+i));
+    return false;
+}
+
+bool Value_ItAgent::hit_wall(vector<vector<int>> crossed_states) {
+    for (uint i = 0; i < crossed_states.size(); i++) {
+        if (crossed_states[i][0] > 0 && crossed_states[i][1] > 0 && crossed_states[i][0] < wd->world_vec.size() && crossed_states[i][1] < wd->world_vec[0].size()) {
+            if (wd->world_vec[crossed_states[i][0]][crossed_states[i][1]] == WALL) {
+                return true;
+            }
         }
     }
-        
+    return false;
+}
+
+vector<vector<int>> Value_ItAgent::affected_squares(int x, int y, int acc_x, int acc_y) {
+    vector<vector<int>> aff_sqrs;
+
+    if (acc_x > 0) {
+        for (int i = 1; i <= acc_x; i++) {
+            int t_y;
+            if (acc_y == 0) {
+                t_y = y;
+            } else {
+                t_y = floor((double) (acc_y / acc_x) * (double) (x + i));
+            }
+            vector<int> temp;
+            temp.push_back(x + i);
+            temp.push_back(t_y);
+            aff_sqrs.push_back(temp);
+        }
+    } else {
+        for (int i = -1; i >= acc_x; i--) {
+            int t_y;
+            if (acc_y == 0) {
+                t_y = y;
+            } else {
+                t_y = floor((double) (acc_y / acc_x) * (double) (x + i));
+            }
+            vector<int> temp;
+            temp.push_back(x + i);
+            temp.push_back(t_y);
+            aff_sqrs.push_back(temp);
+        }
+    }
+
+    if (acc_y > 0) {
+        for (int i = 1; i <= acc_y; i++) {
+            int t_x;
+            if (acc_x == 0) {
+                t_x = x;
+            } else {
+
+                t_x = floor((double) (1 / (double) (acc_y / acc_x)) * (double) (y + i));
+            }
+            vector<int> temp;
+            temp.push_back(t_x);
+            temp.push_back(y + i);
+            aff_sqrs.push_back(temp);
+
+        }
+    } else {
+        for (int i = -1; i >= acc_y; i--) {
+            int t_x;
+            if (acc_x == 0) {
+                t_x = x;
+            } else {
+                t_x = floor((double) (acc_y / acc_x) * (double) (y + i));
+            }
+            vector<int> temp;
+            temp.push_back(t_x);
+            temp.push_back(y + i);
+            aff_sqrs.push_back(temp);
+        }
+
+    }
+    return aff_sqrs;
+
 }
 
 vector<int> Value_ItAgent::calc_vel(int vel_x, int vel_y, int act_x, int act_y) {
@@ -212,8 +336,8 @@ vector<vector<double>> Value_ItAgent::get_reward(vector<vector<uint>> track) {
         vector<double> temp;
         reward.push_back(temp);
         for (uint j = 0; j < track[0].size(); j++) {
-            if ((track[i][j] == TRACK)||(track[i][j] == WALL)||(track[i][j] == START)) {
-                reward[i].push_back(-.04);
+            if ((track[i][j] == TRACK) || (track[i][j] == WALL) || (track[i][j] == START)) {
+                reward[i].push_back(0.0);
             } else if (track[i][j] == FINISH) {
                 reward[i].push_back(1.0);
             }
@@ -236,4 +360,30 @@ int Value_ItAgent::i2a(uint i) {
 
 int Value_ItAgent::i2v(uint i) {
     return i + MIN_VEL;
+}
+
+void Value_ItAgent::print_max_util(uint x, uint y, uint x_vel, uint y_vel) {
+    Point accel(0, 0);
+    for (uint i = 0; i < NUM_ACC; i++) {
+        for (uint j = 0; j < NUM_ACC; j++) {
+            cout << "Accell: " << i2a(i) << ", " << i2a(j) << endl << endl;
+            cout << "Utility = " << U[x][y][x_vel][y_vel][i][j] << endl;
+            if (U[x][y][x_vel][y_vel][i][j] > U[x][y][x_vel][y_vel][accel.x][accel.y]) {
+                accel.x = i;
+                accel.y = j;
+            }
+        }
+    }
+    //max utility
+    cout << "Points:  " << x << ", " << y << endl;
+    cout << "Utility = " << U[x][y][x_vel][y_vel][accel.x][accel.y] << endl;
+    cout << "Accell: " << i2a(accel.x) << ", " << i2a(accel.y) << endl << endl;
+
+
+}
+
+void Value_ItAgent::soft_reset() {
+
+
+
 }
