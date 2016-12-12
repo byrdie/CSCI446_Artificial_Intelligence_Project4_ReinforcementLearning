@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
     init_rand();
 
     string dir = "Tracks/";
-    string filename = "R-track.txt";
+    string filename = "O-track.txt";
     QApplication app(argc, argv);
     World * world = new World(dir, filename);
 

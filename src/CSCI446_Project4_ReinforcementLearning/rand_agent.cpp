@@ -21,7 +21,6 @@ Point RandAgent::next_accel(const Point& pos, const Point& vel, const double rwd
         y = (rand() % 3) - 1;
         
     }
-    cout << x << ", " << y << endl;
     Point acc(x,y);
 
     return acc;
