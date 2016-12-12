@@ -25,13 +25,19 @@ private:
     Point oacc;     // The old acceleration, redefinition of a
     double orwd;
     vector<vector<vector<vector<vector<vector<double>>>>>> U;   // Utility Vector
-    vector<vector<vector<vector<vector<vector<uint>>>>>> UP;    // Utility prime Vector
+    vector<vector<vector<vector<vector<vector<double>>>>>> UP;    // Utility prime Vector
+    bool crash_prot = false;
+    vector<vector<double>> reward;
     
     uint a2i(int a);
     uint v2i(int v);
     int i2a(uint i);
     int i2v(uint i);
-    
+    void val_iteration(World * world);
+    vector<vector<double>> get_reward(vector<vector<uint>> track);
+    vector<vector<uint>> track_val(vector<vector<uint>> track);
+    double utility(uint x, uint y, uint vel_x, uint vel_y, uint act_x, uint act_y);
+    vector<uint> calc_vel(uint vel_x, uint vel_y, uint act_x, uint act_y);
 };
 #endif /* VALUE_IT_H */
 
