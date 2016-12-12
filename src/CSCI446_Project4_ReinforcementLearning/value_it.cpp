@@ -13,7 +13,19 @@ opos(QNULL, QNULL), ovel(QNULL, QNULL), oacc(QNULL, QNULL) {
 }
 
 Point Value_ItAgent::next_accel(const Point& pos, const Point& vel, const double reward, const bool terminate) {
-
+    Point accel(0,0);
+    for(uint i = 0; i < NUM_ACC; i++){
+        for(uint j = 0; j <NUM_ACC; j++){
+            if(U[pos.x][pos.y][vel.x][vel.y][i][j] > U[pos.x][pos.y][vel.x][vel.y][accel.x][accel.y]){
+                accel.x = i;
+                accel.y = j;
+            }
+        }
+    }
+    
+    accel.x = i2a(accel.x);
+    accel.y = i2a(accel.y);
+    return accel;
 
     //    do {
 
@@ -116,15 +128,21 @@ void Value_ItAgent::val_iteration(World * world) {
 
 double Value_ItAgent::utility(uint x, uint y, uint vel_x, uint vel_y, uint act_x, uint act_y) {
     //return utility for given state, velocity, and accellerations
-    vector<uint> vels = calc_vel(vel_x, vel_y, act_x, act_y);
-    vel_x = vels[0];
-    vel_y = vels[1];
+    vector<int> vels = calc_vel(i2v(vel_x), i2v(vel_y), i2a(act_x), i2a(act_y));
+    int i_vel_x = vels[0];
+    int i_vel_y = vels[1];
+     
     
-    x = x + vel_x;
-    y = x + vel_y;
-    if(x > U.size() || y > U.size() || x < 0 || y < 0){
+    int i_x = x + i_vel_x;
+    int i_y = x + i_vel_y;
+    if(i_x > U.size() || i_y > U[0].size() || i_x < 0 || i_y < 0){
         
     }else{
+        x = uint(i_x);
+        y = uint(i_y);
+        vel_x = v2i(i_vel_x);
+        vel_y = v2i(i_vel_y);
+        
         double max_util = U[x][y][vel_x][vel_y][0][0];
         for(uint i = 0; i < NUM_ACC; i++){
             for(uint j = 0; j < NUM_ACC; i++){
@@ -139,9 +157,26 @@ double Value_ItAgent::utility(uint x, uint y, uint vel_x, uint vel_y, uint act_x
 
 }
 
-vector<uint> Value_ItAgent::calc_vel(uint vel_x, uint vel_y, uint act_x, uint act_y) {
+vector<vector<uint>> Value_ItAgent::affected_squares(int x, int y, int acc_x, int acc_y){
+    vector<vector<uint>> aff_sqrs;
+    
+    if(acc_x > 0){
+        for(int i = 0; i <= acc_x; i++){
+             int t_y = floor((double)(acc_y/acc_x) * (double) (x+i));
+        }
+    }
+    
+    if(acc_y > 0){
+        for(int i = 0; i <= acc_y; i++){
+             int t_x = floor((double)(1/(acc_y/acc_x)) * (double) (y+i));
+        }
+    }
+        
+}
+
+vector<int> Value_ItAgent::calc_vel(int vel_x, int vel_y, int act_x, int act_y) {
     //calculate x and y velocities given an acceleration
-    vector<uint> n_vel;
+    vector<int> n_vel;
     if (((vel_x + act_x) < MAX_VEL) && ((vel_x + act_x) > MIN_VEL)) {
         vel_x = vel_x + act_x;
     }
@@ -151,6 +186,7 @@ vector<uint> Value_ItAgent::calc_vel(uint vel_x, uint vel_y, uint act_x, uint ac
     }
     n_vel.push_back(vel_x);
     n_vel.push_back(vel_y);
+    return n_vel;
 }
 
 vector<vector<uint>> Value_ItAgent::track_val(vector<vector<uint>> track) {

@@ -37,7 +37,8 @@ private:
     vector<vector<double>> get_reward(vector<vector<uint>> track);
     vector<vector<uint>> track_val(vector<vector<uint>> track);
     double utility(uint x, uint y, uint vel_x, uint vel_y, uint act_x, uint act_y);
-    vector<uint> calc_vel(uint vel_x, uint vel_y, uint act_x, uint act_y);
+    vector<int> calc_vel(int vel_x, int vel_y, int act_x, int act_y);
+    vector<vector<uint>> affected_squares(int x, int y, int acc_x, int acc_y);
 };
 #endif /* VALUE_IT_H */
 
