@@ -9,6 +9,7 @@
       <itemPath>engine.h</itemPath>
       <itemPath>main.h</itemPath>
       <itemPath>qt_world.h</itemPath>
+      <itemPath>record.h</itemPath>
       <itemPath>typedef.h</itemPath>
       <itemPath>world_gen.h</itemPath>
     </logicalFolder>
@@ -75,6 +76,8 @@
       </item>
       <item path="qt_world.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="record.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="typedef.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="typedef.h" ex="false" tool="3" flavor2="0">
@@ -127,6 +130,8 @@
       <item path="qt_world.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="qt_world.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="record.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="typedef.cpp" ex="false" tool="1" flavor2="0">
       </item>

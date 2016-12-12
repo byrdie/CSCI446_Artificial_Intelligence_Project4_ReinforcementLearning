@@ -11,7 +11,7 @@ Engine::Engine(World * world, Agent * agent, bool crash_restart) {
     restart = crash_restart;
     rt = world;
     car = agent;
-
+    //rt->world_vec = rt->get_train_set(rt->world_vec, rt->max_layer-1);
     /* Find the starting positions */
 
     for (uint i = 0; i < rt->world_vec.size(); i++) {
@@ -31,7 +31,7 @@ Engine::Engine(World * world, Agent * agent, bool crash_restart) {
 
 }
 
-uint Engine::run(bool gui, uint slp_t) {
+uint Engine::run(bool gui, uint slp_t, bool debug) {
 
 
 
@@ -48,7 +48,7 @@ uint Engine::run(bool gui, uint slp_t) {
     }
 
 
-    double rwd = -1.0;
+    double rwd = -1e-3;
 
     uint ns = 0;
 
@@ -56,8 +56,11 @@ uint Engine::run(bool gui, uint slp_t) {
     /* Main control loop */
     while (true) {
 
+
+
+
         /* Have the agent carry out the next move */
-        move(rwd, false);
+        move(rwd, debug);
         rwd = -1.0;
         Point pos = pos_lst.back(); // Update the current position
         Point vel = vel_lst.back();
@@ -66,6 +69,19 @@ uint Engine::run(bool gui, uint slp_t) {
             qApp->processEvents();
             qApp->processEvents();
             usleep(slp_t);
+
+            char * filename = new char[100];
+            sprintf(filename, "../output/frames/%d.png", ns);
+            rt->qt_world->save_world(filename);
+
+            char latex_image[100];
+            sprintf(latex_image, "     \\includegraphics[width=0.5\\textwidth]{frames/%d.png}", time);
+
+            out << "\\begin{center}" << endl;
+            out << latex_image << endl;
+            out << "\\end{center}" << endl;
+
+
         }
 
         if (rt->world_vec[pos.x][pos.y] == FINISH) {
@@ -112,7 +128,7 @@ uint Engine::run(bool gui, uint slp_t) {
         if (rt->world_vec[pos.x][pos.y] == WALL) {
 
             /* If so, reset the car to the appropriate position */
-            rwd = -2.0;
+            rwd = 2 * rwd;
             if (restart) {
                 pos = pos_lst.front();
                 pos_lst.clear();
@@ -132,9 +148,27 @@ uint Engine::run(bool gui, uint slp_t) {
                 qApp->processEvents();
                 qApp->processEvents();
                 usleep(slp_t);
+
+                char * filename = new char[100];
+                sprintf(filename, "../output/frames/%d.png", ns);
+                rt->qt_world->save_world(filename);
+
+                char latex_image[100];
+                sprintf(latex_image, "     \\includegraphics[width=0.5\\textwidth]{frames/%d.png}", time);
+
+                out << "\\begin{center}" << endl;
+                out << latex_image << endl;
+                out << "\\end{center}" << endl;
+
+
             }
 
         }
+
+        if (ns > 1e5) {
+            return ns;
+        }
+
         ns++;
     }
 
@@ -194,5 +228,17 @@ int Engine::range(int arg, int n1, int n2) {
 
     return max(min(arg, n_max), n_min);
 
+}
+
+void Engine::update_start() {
+    start_pos.clear();
+    for (uint i = 0; i < rt->world_vec.size(); i++) {
+        for (uint j = 0; j < rt->world_vec[i].size(); j++) {
+            if (rt->world_vec[i][j] == START) {
+                Point spos(i, j);
+                start_pos.push_back(spos);
+            }
+        }
+    }
 }
 

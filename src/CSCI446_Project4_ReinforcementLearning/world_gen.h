@@ -34,14 +34,14 @@ public:
     uint x_size;
     uint y_size;
     vector<vector<uint> > world_vec;
-
+    vector<vector<uint>> train_vec;
     Qt_world * qt_world;
-
+    uint max_layer;
 
     World(string dir, string filename); // Load a world from a file
     void add_effect(Point * center, int effect_bits);
-
-
+    void generate_train_track();
+    vector<vector<uint>> get_train_set(vector<vector<uint>> cur_track, uint level);
 
 };
 

@@ -35,7 +35,7 @@ Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const doubl
         N[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)]++;
 
         /* Compute max_a' Q[s',a'] */
-        if (debug) cout << "Compute max_a' Q[s',a']\n";
+        if (debug) out << "\\texttt{Compute max_a' Q[s',a']\n";
         double max_a_Q = -DBL_MAX;
         for (uint i = 0; i < NUM_ACC; i++) {
             for (uint j = 0; j < NUM_ACC; j++) {
@@ -49,7 +49,8 @@ Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const doubl
             }
         }
 
-        if (debug) cout << "max_a' Q[" << pos.x << "][" << pos.y << "][" << vel.x << "][" << vel.y << "][" << "ax'" << "][" << "ay'" << "] = " << max_a_Q << "\n"
+
+        if (debug) out << "max_a' Q[" << pos.x << "][" << pos.y << "][" << vel.x << "][" << vel.y << "][" << "ax'" << "][" << "ay'" << "] = " << max_a_Q << "\n"
 
 
                 << "Q[" << opos.x << "][" << opos.y << "][" << ovel.x << "][" << ovel.y << "][" << oacc.x << "][" << oacc.y << "] = "
@@ -80,7 +81,7 @@ Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const doubl
                 * (rwd + gamma * max_a_Q - Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)]);
 
 
-        if (debug) cout << "    = " << Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)] << "\n";
+        if (debug) out << "    = " << Q[opos.x][opos.y][v2i(ovel.x)][v2i(ovel.y)][a2i(oacc.x)][a2i(oacc.y)] << "\n";
 
 
     }
@@ -94,7 +95,7 @@ Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const doubl
             if (j != a2i(0) and i != a2i(0)) {
                 double test = exploration_function(Q[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j], N[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j]);
 
-                if (debug) cout << "    Testing f(Q[" << pos.x << "][" << pos.y << "][" << vel.x << "][" << vel.y << "][" << i2a(i) << "][" << i2a(j) << "], " << "N[" << pos.x << "][" << pos.y << "][" << vel.x << "][" << vel.y << "][" << i2a(i) << "][" << i2a(j) << "]) = " << test << "\n";
+                if (debug) out << "    Testing f(Q[" << pos.x << "][" << pos.y << "][" << vel.x << "][" << vel.y << "][" << i2a(i) << "][" << i2a(j) << "], " << "N[" << pos.x << "][" << pos.y << "][" << vel.x << "][" << vel.y << "][" << i2a(i) << "][" << i2a(j) << "]) = " << test << "\n";
 
                 if (test > max_a_f) {
                     max_a_f = test;
@@ -116,8 +117,10 @@ Point QLearningAgent::next_accel(const Point& pos, const Point& vel, const doubl
     oacc = acc;
     orwd = rwd;
 
-    if (debug) cout << "Requested ax = " << acc.x << ", ay = " << acc.y << endl;
-    if (debug) cout << "______________________________________________________\n";
+    if (debug) out << "Requested ax = " << acc.x << ", ay = " << acc.y << endl;
+    if (debug) out << "______________________________________________________\n}";
+
+
 
     return acc;
 
