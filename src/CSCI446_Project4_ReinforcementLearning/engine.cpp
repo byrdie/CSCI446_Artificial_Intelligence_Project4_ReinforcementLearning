@@ -44,6 +44,16 @@ uint Engine::run(bool gui, uint slp_t, bool debug) {
         rt->qt_world->move_tile(car_tile, pos_lst.back().x, pos_lst.back().y);
         qApp->processEvents();
         qApp->processEvents();
+
+        char * filename = new char[100];
+        sprintf(filename, "../output/frames/00.png");
+        rt->qt_world->save_world(filename);
+
+        char latex_image[100];
+        sprintf(latex_image, "\\includegraphics[width=0.5\\textwidth]{frames/00.png}");
+
+        out << latex_image << "\n";
+
         usleep(slp_t);
     }
 
@@ -60,7 +70,7 @@ uint Engine::run(bool gui, uint slp_t, bool debug) {
 
 
         /* Have the agent carry out the next move */
-        move(rwd, debug);
+        move(rwd, false, debug);
         rwd = -1.0;
         Point pos = pos_lst.back(); // Update the current position
         Point vel = vel_lst.back();
@@ -68,24 +78,22 @@ uint Engine::run(bool gui, uint slp_t, bool debug) {
             rt->qt_world->move_tile(car_tile, pos.x, pos.y);
             qApp->processEvents();
             qApp->processEvents();
-            usleep(slp_t);
+
 
             char * filename = new char[100];
-            sprintf(filename, "../output/frames/%d.png", ns);
+            sprintf(filename, "../output/frames/%d.png", 2 * ns);
             rt->qt_world->save_world(filename);
 
             char latex_image[100];
-            sprintf(latex_image, "     \\includegraphics[width=0.5\\textwidth]{frames/%d.png}", time);
+            sprintf(latex_image, "\\includegraphics[width=0.5\\textwidth]{frames/%d.png}", 2 * ns);
 
-            out << "\\begin{center}" << endl;
-            out << latex_image << endl;
-            out << "\\end{center}" << endl;
+            out << latex_image << "\n";
 
-
+            usleep(slp_t);
         }
 
         if (rt->world_vec[pos.x][pos.y] == FINISH) {
-            move(1.0, true);
+            move(1.0, true, debug);
             pos_lst.clear();
             vel_lst.clear();
             return ns; // If so, break out of the loop
@@ -102,7 +110,7 @@ uint Engine::run(bool gui, uint slp_t, bool debug) {
 
 
                 if (rt->world_vec[opos.x][opos.y] == FINISH) {
-                    move(1.0, true);
+                    move(1.0, true, debug);
                     pos_lst.clear();
                     vel_lst.clear();
                     return ns; // If so, break out of the loop
@@ -147,23 +155,24 @@ uint Engine::run(bool gui, uint slp_t, bool debug) {
                 rt->qt_world->move_tile(car_tile, pos.x, pos.y);
                 qApp->processEvents();
                 qApp->processEvents();
-                usleep(slp_t);
+
 
                 char * filename = new char[100];
-                sprintf(filename, "../output/frames/%d.png", ns);
+                sprintf(filename, "../output/frames/%d.png", 2 * ns + 1);
                 rt->qt_world->save_world(filename);
 
                 char latex_image[100];
-                sprintf(latex_image, "     \\includegraphics[width=0.5\\textwidth]{frames/%d.png}", time);
+                sprintf(latex_image, "\\includegraphics[width=0.5\\textwidth]{frames/%d.png}", 2 * ns + 1);
 
-                out << "\\begin{center}" << endl;
-                out << latex_image << endl;
-                out << "\\end{center}" << endl;
+                out << latex_image << "\n";
 
+                usleep(slp_t);
 
             }
 
         }
+
+        out << "\\\\ \n";
 
         if (ns > 1e5) {
             return ns;
@@ -181,9 +190,8 @@ uint Engine::run(bool gui, uint slp_t, bool debug) {
  * Have the update the position and velocity based on the agent's requested
  * acceleration
  */
-void Engine::move(const double reward, const bool terminal) {
+void Engine::move(const double reward, const bool terminal, bool debug) {
 
-    bool debug = false;
 
     Point pos = pos_lst.back();
     Point vel = vel_lst.back();

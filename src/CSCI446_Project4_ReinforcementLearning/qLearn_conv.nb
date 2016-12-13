@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    178646,       3184]
-NotebookOptionsPosition[    178096,       3161]
-NotebookOutlinePosition[    178436,       3176]
-CellTagsIndexPosition[    178393,       3173]
+NotebookDataLength[    178380,       3180]
+NotebookOptionsPosition[    177832,       3157]
+NotebookOutlinePosition[    178172,       3172]
+CellTagsIndexPosition[    178129,       3169]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -3150,13 +3150,9 @@ Cell[BoxData[
     "/home/byrdie/School/Classes/CSCI446_Artificial_Intelligence/CSCI446_\
 Artificial_Intelligence_Project4_ReinforcementLearning/src/CSCI446_Project4_\
 ReinforcementLearning/qlearn.dat", Number], PlotRange -> All], StandardForm],
-  ImageSizeCache->{360., {112., 117.}},
+  ImageSizeCache->{253., {4., 10.}},
   UpdateInterval->1]], "Output",
- CellChangeTimes->{
-  3.690486456134975*^9, {3.69048655190204*^9, 3.690486592942976*^9}, 
-   3.6904866971498127`*^9, 3.690490220761579*^9, {3.690490284029317*^9, 
-   3.690490290003949*^9}, 3.690511211754117*^9, 3.690512853887372*^9, 
-   3.69051593580494*^9, {3.690521738709306*^9, 3.690521750935822*^9}}]
+ CellChangeTimes->{3.6905761883959837`*^9}]
 }, Open  ]]
 },
 WindowSize->{1920, 1053},
@@ -3184,7 +3180,7 @@ Cell[1956, 55, 174492, 3065, 539, 138148, 2470, "CachedBoxData", "BoxData", \
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[176485, 3125, 919, 18, 57, "Input"],
-Cell[177407, 3145, 673, 13, 244, "Output"]
+Cell[177407, 3145, 409, 9, 34, "Output"]
 }, Open  ]]
 }
 ]
