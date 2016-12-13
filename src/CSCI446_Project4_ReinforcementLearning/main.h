@@ -13,6 +13,7 @@
 #include "QLearn.h"
 #include "rand_agent.h"
 #include "value_it.h"
+#include "record.h"
 
 void init_rand(unsigned long int seed);
 unsigned long int init_rand();

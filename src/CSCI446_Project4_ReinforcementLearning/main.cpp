@@ -16,14 +16,16 @@
 #include <QApplication>
 #include <fstream>
 
+
+
 int main(int argc, char *argv[]) {
     // initialize resources, if needed
     // Q_INIT_RESOURCE(resfile);
-
+    
     init_rand();
-
+    
     string dir = "Tracks/";
-    string filename = "R-track.txt";
+    string filename = "R-track_1.txt";
     QApplication app(argc, argv);
     World * world = new World(dir, filename);
 
@@ -31,9 +33,10 @@ int main(int argc, char *argv[]) {
     bool gui = true;
     uint n_steps = 5e5;
     
-    Value_ItAgent * va = new Value_ItAgent(world->world_vec.size(), world->world_vec[0].size(), 0, .5, .00000000001);
+    Value_ItAgent * va = new Value_ItAgent(world->world_vec.size(), world->world_vec[0].size(), 0, .5, .00000000000001);
     Engine engine1(world, va, restart);
-
+        //world->world_vec = world->get_train_set(world->world_vec, world->max_layer-10);
+        //engine1.update_start();
     va->val_iteration(world);
     for(uint i = 0; i < world->world_vec.size(); i++){
         for(uint j = 0; j <world->world_vec[0].size(); j++){
@@ -42,9 +45,9 @@ int main(int argc, char *argv[]) {
             }
         }
     }
-    while(true){
-    engine1.run(gui, 500000);
-    }
+    
+    engine1.run(gui, 250000);
+    
 
 
 

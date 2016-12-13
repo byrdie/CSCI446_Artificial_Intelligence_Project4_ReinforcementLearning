@@ -10,6 +10,8 @@ class Value_ItAgent;
 
 #include "agent.h"
 #include "engine.h"
+#include "record.h"
+//#include "main.h"
 
 class Value_ItAgent : public Agent {
 public:
@@ -23,6 +25,8 @@ public:
     uint v2i(int v);
     int i2a(uint i);
     int i2v(uint i);
+    
+    uint iter = 0;
 private:
     double delta;
     double gamma;
