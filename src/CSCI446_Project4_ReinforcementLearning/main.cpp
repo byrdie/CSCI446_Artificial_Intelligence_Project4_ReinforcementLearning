@@ -15,15 +15,15 @@
 
 #include <QApplication>
 #include <fstream>
-
+record out("text.txt");
 int main(int argc, char *argv[]) {
     // initialize resources, if needed
     // Q_INIT_RESOURCE(resfile);
 
     init_rand();
-
+   
     string dir = "Tracks/";
-    string filename = "O-track.txt";
+    string filename = "R-track.txt";
     QApplication app(argc, argv);
     World * world = new World(dir, filename);
 
@@ -43,9 +43,9 @@ int main(int argc, char *argv[]) {
             }
         }
     }
-    while (true) {
+
         engine1.run(gui, 250000);
-    }
+    
 
 
 
