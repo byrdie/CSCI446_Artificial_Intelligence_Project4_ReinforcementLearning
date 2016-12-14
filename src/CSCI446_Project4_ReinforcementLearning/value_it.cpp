@@ -32,6 +32,8 @@ Point Value_ItAgent::next_accel(const Point& pos, const Point& vel, const double
     double max_ut;
     for (uint i = 0; i < NUM_ACC; i++) {
         for (uint j = 0; j < NUM_ACC; j++) {
+            out << "Accelleration = " << i2a(i) << ", " << i2a(j)<<" ";
+            out << "Utility = " << U[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j] << "\n";
             if (U[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j] > U[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][accel.x][accel.y]) {
                 choices.clear();
                 vector<int> temp;
@@ -39,6 +41,8 @@ Point Value_ItAgent::next_accel(const Point& pos, const Point& vel, const double
                 temp.push_back(j);
                 choices.push_back(temp);
                 max_ut = U[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j];
+                accel.x = i;
+                accel.y = j;
 
             } else if (U[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][i][j] == U[pos.x][pos.y][v2i(vel.x)][v2i(vel.y)][accel.x][accel.y]) {
                 vector<int> temp;
@@ -73,19 +77,19 @@ void Value_ItAgent::val_iteration(World * world) {
     int count = 0;
 
     do {
-        out << "GENERATION: _________________________________________________________________________" << count << "\n";
+        //out << "GENERATION: _________________________________________________________________________" << count << "\n";
         //update u and set delta back to zero
         U = UP;
         delta = 0;
         //iterate over every state that is part of the track
         for (uint i = 0; i < track_vals.size(); i++) {
-            out << "x_pos = " << track_vals[i][0] << ", y_pos = " << track_vals[i][1] << "\n";
+           // out << "x_pos = " << track_vals[i][0] << ", y_pos = " << track_vals[i][1] << "\n";
 
             //iterate over each velocity
             for (uint j = 0; j < NUM_VEL; j++) {
                 for (uint k = 0; k < NUM_VEL; k++) {
                     if (i2v(j) == 0 && i2v(k) == 0) {
-                        out << "    vel_x = " << i2v(j) << ", vel_y = " << i2v(k) << "\n";
+                 //       out << "    vel_x = " << i2v(j) << ", vel_y = " << i2v(k) << "\n";
                     }
                     //iterate over  each accelleration. Note we save all utilities rather than just the max one
                     vector<int> max_acc(2, 0);
@@ -117,13 +121,14 @@ void Value_ItAgent::val_iteration(World * world) {
                         }
                     }
                     if (i2v(j) == 0 && i2v(k) == 0) {
-                        out << "        Max Utility = " << max_ut << "\n";
-                        out << "        Acceleration = " << max_acc[0] << ", " << max_acc[1] << "\n";
+                     //   out << "        Max Utility = " << max_ut << "\n";
+                      //  out << "        Acceleration = " << max_acc[0] << ", " << max_acc[1] << "\n";
                     }
 
                 }
             }
         }
+        U = UP;
         count++;
 
     } while (delta > (epsilon * (1 - gamma) / gamma));
@@ -140,7 +145,8 @@ double Value_ItAgent::utility(uint x, uint y, uint vel_x, uint vel_y, uint act_x
     //if out of bounds
     if (i_x >= U.size() || i_y >= U[0].size() || i_x < 0 || i_y < 0) {
         if (did_finish(affected_squares(x, y, i_vel_x, i_vel_y))) {
-            return 1.0;
+            //return 1.0;
+            return 0;
         } else {
             vel_x = 0;
             vel_y = 0;
@@ -156,15 +162,21 @@ double Value_ItAgent::utility(uint x, uint y, uint vel_x, uint vel_y, uint act_x
                     }
                 }
             }
-            return max_util;
+            return 0;
         }
 
     } else {
-        if (did_finish(affected_squares(x, y, i_vel_x, i_vel_y)) || wd->world_vec[i_x][i_y] == FINISH) {
+//        if (did_finish(affected_squares(x, y, i_vel_x, i_vel_y)) || wd->world_vec[i_x][i_y] == FINISH) {
+        if ( wd->world_vec[i_x][i_y] == FINISH) {
+//            if(x == 5 && y == 25 && i2v(vel_x) == 0 && i2v(vel_y) == 0 && i2a(act_x) == 1 && i2a(act_y) == 1){
+//                out << "finish\n";
+//            }
             return 1.0;
 
         } else if (hit_wall(affected_squares(x, y, i_vel_x, i_vel_y)) || wd->world_vec[i_x][i_y] == WALL) {
-
+//           if(x == 5 && y == 25 && i2v(vel_x) == 0 && i2v(vel_y) == 0 && i2a(act_x) == 1 && i2a(act_y) == 1){
+//                out << "wall\n";
+//            }
             double max_util = U[x][y][vel_x][vel_y][0][0];
             for (uint i = 0; i < NUM_ACC; i++) {
                 for (uint j = 0; j < NUM_ACC; j++) {
@@ -189,6 +201,7 @@ double Value_ItAgent::utility(uint x, uint y, uint vel_x, uint vel_y, uint act_x
                     }
                 }
             }
+            //out << max_util << "\n";
             return max_util;
         }
     }
