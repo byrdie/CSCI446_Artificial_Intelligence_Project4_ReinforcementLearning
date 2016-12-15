@@ -92,7 +92,7 @@
 	\end{equation}
 	where R(s) is the reward for the current state, $s'$ is the next state, and $P(s'|s,a)$ is the probability of being in state $s'$ given an action $a$ in state $s$. $\gamma$ is used to tweak how much weight we put on the expected next states utility values for calculating the current states utility value.
 	
-	Value iteration uses this equation to iteratively propagate utilities and actions to each state. To start, each state is given a random utility, though each state still has a unique reward value with the goal states having high reward. We then iterate over every state, recalculating each states utility. We keep looping through the states until the largest change of utility, designated $\delta$, is larger than $\epsilon(1-\gamma)/\gamma$. $\epsilon$ designates the maximum error allowed in any state. This is a tunable value, with smaller numbers making convergence take longer.
+	Value iteration uses this equation to iteratively propagate utilities and actions to each state. To start, each state was given a random utility, though each state still had a unique reward value with the goal states having high reward. We then iterated over every state, recalculating each states utility. We kept looping through the states until the largest change of utility, designated $\delta$, was larger than $\epsilon(1-\gamma)/\gamma$. $\epsilon$ designates the maximum error allowed in any state. This is a tunable value, with smaller numbers making convergence take longer.
 	\subsection{Implementation}
 	
 	We based the design of our algorithm on the function \textsc{Value-Iteration} described in Figure 17.4 of \cite{ai}. 
