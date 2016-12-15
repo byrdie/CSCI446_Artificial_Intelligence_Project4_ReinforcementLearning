@@ -135,7 +135,7 @@ void Value_ItAgent::val_iteration(World * world) {
         }
         U = UP;
         count++;
-        out << delta << "\n";
+        //out << delta << "\n";
 
     } while (delta > (epsilon * (1 - gamma) / gamma));
 
@@ -151,8 +151,8 @@ double Value_ItAgent::utility(uint x, uint y, uint vel_x, uint vel_y, uint act_x
     //if out of bounds
     if (i_x >= U.size() || i_y >= U[0].size() || i_x < 0 || i_y < 0) {
         if (did_finish(affected_squares(x, y, i_vel_x, i_vel_y))) {
-            return 1.0;
-            //return 0;
+            //return 1.0;
+            return 0;
         } else {
             vel_x = 0;
             vel_y = 0;
@@ -173,8 +173,8 @@ double Value_ItAgent::utility(uint x, uint y, uint vel_x, uint vel_y, uint act_x
 
     } else {
 
-        if (did_finish(affected_squares(x, y, i_vel_x, i_vel_y)) || wd->world_vec[i_x][i_y] == FINISH) {
-            //        if ( wd->world_vec[i_x][i_y] == FINISH) {
+        //if (did_finish(affected_squares(x, y, i_vel_x, i_vel_y)) || wd->world_vec[i_x][i_y] == FINISH) {
+                    if ( wd->world_vec[i_x][i_y] == FINISH) {
 //            if (x == 25 && y == 2 && i2v(vel_x) == 0 && i2v(vel_y) == 0 && i2a(act_x) == -1 && i2a(act_y) == -1) {
 //                out << "finish\n";
 //            }

@@ -36,7 +36,8 @@ uint Engine::run(bool gui, uint slp_t) {
 
 
     /* Select starting position and velocity */
-    pos_lst.push_back(start_pos[rand() % start_pos.size()]);
+    uint x = rand() % start_pos.size();
+    pos_lst.push_back(start_pos[x]);
     Point start_vel(0, 0);
     vel_lst.push_back(start_vel);
 
