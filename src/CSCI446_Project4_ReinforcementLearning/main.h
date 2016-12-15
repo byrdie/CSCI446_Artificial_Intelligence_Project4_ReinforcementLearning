@@ -11,6 +11,8 @@
 #include "world_gen.h"
 #include "engine.h"
 #include "QLearn.h"
+#include "rand_agent.h"
+#include "value_it.h"
 #include "record.h"
 
 void init_rand(unsigned long int seed);

@@ -172,7 +172,7 @@ uint Engine::run(bool gui, uint slp_t, bool debug) {
 
         }
 
-        out << "\\\\ \n";
+        if (debug) out << "\\\\ \n";
 
         if (ns > 1e5) {
             return ns;

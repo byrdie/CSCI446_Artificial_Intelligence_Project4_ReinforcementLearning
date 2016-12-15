@@ -11,6 +11,7 @@
       <itemPath>qt_world.h</itemPath>
       <itemPath>record.h</itemPath>
       <itemPath>typedef.h</itemPath>
+      <itemPath>value_it.h</itemPath>
       <itemPath>world_gen.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -25,7 +26,9 @@
       <itemPath>engine.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
       <itemPath>qt_world.cpp</itemPath>
+      <itemPath>rand_agent.cpp</itemPath>
       <itemPath>typedef.cpp</itemPath>
+      <itemPath>value_it.cpp</itemPath>
       <itemPath>world_gen.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -82,6 +85,10 @@
       </item>
       <item path="typedef.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="value_it.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="value_it.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="world_gen.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="world_gen.h" ex="false" tool="3" flavor2="0">
@@ -136,6 +143,10 @@
       <item path="typedef.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="typedef.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="value_it.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="value_it.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="world_gen.cpp" ex="false" tool="1" flavor2="0">
       </item>
