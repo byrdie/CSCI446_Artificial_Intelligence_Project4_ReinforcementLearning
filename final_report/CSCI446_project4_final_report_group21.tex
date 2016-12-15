@@ -81,7 +81,9 @@
 	\normalsize
 
 	\section{Introduction}
+		Machine learning that is realized through an agent making actions and observing the results is known as reinforcement learning.  This type of learning is unsupervised, meaning that the “correct” solution given an input is not known from data.  Instead, the agent trains by observing many iterations of its own actions to maximize its cumulative rewards of its current problem.  For our project, we attempt to solve the racetrack problem by implementing reinforcement learning with the Value Iteration and Q-learning algorithms.
 	\section{The Racetrack Problem}
+		The racetrack problem involves controlling a car from start to finish along multiple given racetracks of varying size and shape.  Control is maintained solely by altering the velocity of the car.  The performance of the algorithm is scored by minimizing the number of time steps that the car takes in its run.  This can thus be improved by increasing velocity, but is also penalized if the car runs into a wall.  At any given state, the car is represented by the horizontal and vertical components of its location at time t, x(t) and y(t), respectively.  The velocity of the car is manipulated with the values of ax and ay.  Accompanying every acceleration action is a 20 percent chance of failure to create some variability for the agent.
 	\section{Value Iteration}
 		\subsection{Description}
 		\subsection{Implementation}
