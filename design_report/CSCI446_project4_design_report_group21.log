@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.3)  2 DEC 2016 13:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.8)  2 DEC 2016 13:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -592,10 +592,10 @@ Package microtype Info: Loading generic settings for font family
 
 ]
 Package epstopdf Info: Source file: <Diagrams/uml.eps>
-(epstopdf)                    date: 2016-12-01 22:12:32
+(epstopdf)                    date: 2016-12-02 11:12:41
 (epstopdf)                    size: 169332 bytes
 (epstopdf)             Output file: <Diagrams/uml-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-12-01 22:16:02
+(epstopdf)                    date: 2016-12-02 11:12:41
 (epstopdf)                    size: 69483 bytes
 (epstopdf)             Command: <repstopdf --outfile=Diagrams/uml-eps-converted
 -to.pdf Diagrams/uml.eps>
@@ -611,48 +611,58 @@ Package pdftex.def Info: Diagrams/uml-eps-converted-to.pdf used on input line 1
 (pdftex.def)             Requested size: 465.06004pt x 159.84093pt.
  [2]
 (./CSCI446_project4_design_report_group21.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 129.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 128.
  [3 <./Diagrams/uml-eps-converted-to.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 129.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 128.
  (./CSCI446_project4_design_report_group21.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 129.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 129.
-Package rerunfilecheck Info: File `CSCI446_project4_design_report_group21.out' 
-has not changed.
-(rerunfilecheck)             Checksum: E26BC659C247BE73B3C767FF507871FD;600.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 128.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 128.
 
+
+Package rerunfilecheck Warning: File `CSCI446_project4_design_report_group21.ou
+t' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `CSCI446_project4_design_report_grou
+p21.out':
+(rerunfilecheck)             Before: E26BC659C247BE73B3C767FF507871FD;600
+(rerunfilecheck)             After:  644DB09350B05919774E86C240A60010;557.
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.88pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 129.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 128.
  ) 
 Here is how much of TeX's memory you used:
  10072 strings out of 493029
  153491 string characters out of 6136234
- 387030 words of memory out of 5000000
+ 387028 words of memory out of 5000000
  13350 multiletter control sequences out of 15000+600000
  21090 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,10n,43p,1067b,388s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.pfb></usr/share/t
-exmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/pub
-lic/cm-super/sfcc1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc120
-0.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1440.pfb></usr/share/te
-xmf/fonts/type1/public/cm-super/sfcc1728.pfb></usr/share/texmf/fonts/type1/publ
-ic/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200
-.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/tex
-mf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/publi
-c/cm-super/sftt1000.pfb>
-Output written on CSCI446_project4_design_report_group21.pdf (3 pages, 308707 b
+pdfTeX warning (dest): name{section.7} has been referenced but does not exist
+, replaced by a fixed one
+
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7
+.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.pfb></usr/share/tex
+mf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/publi
+c/cm-super/sfcc1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1200.
+pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1440.pfb></usr/share/texm
+f/fonts/type1/public/cm-super/sfcc1728.pfb></usr/share/texmf/fonts/type1/public
+/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.p
+fb></usr/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/texmf
+/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/
+cm-super/sftt1000.pfb>
+Output written on CSCI446_project4_design_report_group21.pdf (3 pages, 308326 b
 ytes).
 PDF statistics:
  162 PDF objects out of 1000 (max. 8388607)
