@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    178872,       3187]
-NotebookOptionsPosition[    178321,       3164]
-NotebookOutlinePosition[    178661,       3179]
-CellTagsIndexPosition[    178618,       3176]
+NotebookDataLength[    178950,       3189]
+NotebookOptionsPosition[    178398,       3166]
+NotebookOutlinePosition[    178738,       3181]
+CellTagsIndexPosition[    178695,       3178]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -3135,7 +3135,7 @@ CSCI446_Artificial_Intelligence_Project4_ReinforcementLearning/src/CSCI446_\
 Project4_ReinforcementLearning/qlearn.dat\>\"", ",", " ", "Number"}], "]"}], 
      ",", " ", 
      RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-     RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Full"}]}], "]"}], ",", 
    RowBox[{"UpdateInterval", "\[Rule]", "1"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.690486395850268*^9, 3.6904863986042223`*^9}, {
   3.690486431448941*^9, 3.690486452815755*^9}, {3.69048653056936*^9, 
@@ -3145,7 +3145,8 @@ Project4_ReinforcementLearning/qlearn.dat\>\"", ",", " ", "Number"}], "]"}],
   3.690521737618513*^9, 3.690521749070447*^9}, {3.690677964601466*^9, 
   3.6906779737779617`*^9}, {3.690751548018731*^9, 3.690751553549962*^9}, {
   3.6907518545052977`*^9, 3.690751862646904*^9}, {3.690758390936843*^9, 
-  3.6907584131090727`*^9}, {3.690758452759377*^9, 3.690758463411807*^9}}],
+  3.6907584131090727`*^9}, {3.690758452759377*^9, 3.690758463411807*^9}, {
+  3.690760379152836*^9, 3.6907603811232357`*^9}}],
 
 Cell[BoxData[
  DynamicBox[ToBoxes[
@@ -3154,12 +3155,13 @@ Cell[BoxData[
     "/home/byrdie/School/Classes/CSCI446_Artificial_Intelligence/CSCI446_\
 Artificial_Intelligence_Project4_ReinforcementLearning/src/CSCI446_Project4_\
 ReinforcementLearning/qlearn.dat", Number], PlotRange -> All, ImageSize -> 
-    Large], StandardForm],
-  ImageSizeCache->{576., {172., 179.}},
+    Full], StandardForm],
+  ImageSizeCache->{1795., {558., 563.}},
   UpdateInterval->1]], "Output",
  CellChangeTimes->{3.6905761883959837`*^9, 3.6906680849366493`*^9, 
   3.690680057915222*^9, 3.690724177854945*^9, 3.690751554559123*^9, 
-  3.690751868048959*^9, 3.690758414175748*^9, 3.690758468704934*^9}]
+  3.690751868048959*^9, 3.690758414175748*^9, 3.690758468704934*^9, 
+  3.6907603840707006`*^9}]
 }, Open  ]]
 },
 WindowSize->{1920, 1053},
@@ -3186,8 +3188,8 @@ Cell[1956, 55, 174492, 3065, 539, 138148, 2470, "CachedBoxData", "BoxData", \
 "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[176485, 3125, 1218, 22, 57, "Input"],
-Cell[177706, 3149, 599, 12, 366, "Output"]
+Cell[176485, 3125, 1268, 23, 57, "Input"],
+Cell[177756, 3150, 626, 13, 1136, "Output"]
 }, Open  ]]
 }
 ]
