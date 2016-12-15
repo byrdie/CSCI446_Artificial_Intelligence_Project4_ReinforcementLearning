@@ -1,0 +1,14 @@
+\begin{thebibliography}{}
+
+\bibitem[Russell and Norvig, 2010]{ai}
+Russell, S. and Norvig, P. (2010).
+\newblock {\em Artificial Intelligence: A Modern Approach}.
+\newblock Pearson Education, Upper Saddle River, New Jersey 07458, 3rd edition.
+
+\bibitem[Yu and Bertsekas, 2013]{Yu2013}
+Yu, H. and Bertsekas, D. (2013).
+\newblock Q-learning and policy iteratin algorithms for stochastic shortest
+  path problems.
+\newblock {\em Annals of Operatons Research}, 208(1):95--132.
+
+\end{thebibliography}

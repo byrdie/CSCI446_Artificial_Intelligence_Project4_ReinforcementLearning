@@ -16,6 +16,7 @@
 
 #include "world_gen.h"
 #include "agent.h"
+#include "record.h"
 
 #define MAX_VEL 5
 #define MIN_VEL -5
@@ -29,7 +30,7 @@ class Engine;
 class Engine {
 public:
     Engine(World * world, Agent * agent, bool crash_restart);
-    uint run(bool gui, uint slp_t);
+    uint run(bool gui, uint slp_t, bool debug);
     void update_start();
 private:
     bool restart;
@@ -39,7 +40,7 @@ private:
     vector<Point> start_pos;
     vector<Point> pos_lst;
     vector<Point> vel_lst;
-    void move(const double reward, const bool terminal);
+    void move(const double reward, const bool terminal, bool debug);
     int range(int arg, int n1, int n2);
     
 };

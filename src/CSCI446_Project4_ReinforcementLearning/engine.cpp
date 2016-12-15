@@ -31,7 +31,7 @@ Engine::Engine(World * world, Agent * agent, bool crash_restart) {
 
 }
 
-uint Engine::run(bool gui, uint slp_t) {
+uint Engine::run(bool gui, uint slp_t, bool debug) {
 
 
 
@@ -45,11 +45,21 @@ uint Engine::run(bool gui, uint slp_t) {
         rt->qt_world->move_tile(car_tile, pos_lst.back().x, pos_lst.back().y);
         qApp->processEvents();
         qApp->processEvents();
+
+        char * filename = new char[100];
+        sprintf(filename, "../output/frames/00.png");
+        rt->qt_world->save_world(filename);
+
+        char latex_image[100];
+        sprintf(latex_image, "\\includegraphics[width=0.5\\textwidth]{frames/00.png}");
+
+        out << latex_image << "\n";
+
         usleep(slp_t);
     }
 
 
-    double rwd = -1.0;
+    double rwd = -1e-3;
 
     uint ns = 0;
 
@@ -57,8 +67,11 @@ uint Engine::run(bool gui, uint slp_t) {
     /* Main control loop */
     while (true) {
 
+
+
+
         /* Have the agent carry out the next move */
-        move(rwd, false);
+        move(rwd, false, debug);
         rwd = -1.0;
         Point pos = pos_lst.back(); // Update the current position
         Point vel = vel_lst.back();
@@ -66,11 +79,22 @@ uint Engine::run(bool gui, uint slp_t) {
             rt->qt_world->move_tile(car_tile, pos.x, pos.y);
             qApp->processEvents();
             qApp->processEvents();
+
+
+            char * filename = new char[100];
+            sprintf(filename, "../output/frames/%d.png", 2 * ns);
+            rt->qt_world->save_world(filename);
+
+            char latex_image[100];
+            sprintf(latex_image, "\\includegraphics[width=0.5\\textwidth]{frames/%d.png}", 2 * ns);
+
+            out << latex_image << "\n";
+
             usleep(slp_t);
         }
 
         if (rt->world_vec[pos.x][pos.y] == FINISH) {
-            move(1.0, true);
+            move(1.0, true, debug);
             pos_lst.clear();
             vel_lst.clear();
             return ns; // If so, break out of the loop
@@ -87,7 +111,7 @@ uint Engine::run(bool gui, uint slp_t) {
 
 
                 if (rt->world_vec[opos.x][opos.y] == FINISH) {
-                    move(1.0, true);
+                    move(1.0, true, debug);
                     pos_lst.clear();
                     vel_lst.clear();
                     return ns; // If so, break out of the loop
@@ -113,7 +137,7 @@ uint Engine::run(bool gui, uint slp_t) {
         if (rt->world_vec[pos.x][pos.y] == WALL) {
 
             /* If so, reset the car to the appropriate position */
-            rwd = -2.0;
+            rwd = 2 * rwd;
             if (restart) {
                 pos = pos_lst.front();
                 pos_lst.clear();
@@ -132,10 +156,29 @@ uint Engine::run(bool gui, uint slp_t) {
                 rt->qt_world->move_tile(car_tile, pos.x, pos.y);
                 qApp->processEvents();
                 qApp->processEvents();
+
+
+                char * filename = new char[100];
+                sprintf(filename, "../output/frames/%d.png", 2 * ns + 1);
+                rt->qt_world->save_world(filename);
+
+                char latex_image[100];
+                sprintf(latex_image, "\\includegraphics[width=0.5\\textwidth]{frames/%d.png}", 2 * ns + 1);
+
+                out << latex_image << "\n";
+
                 usleep(slp_t);
+
             }
 
         }
+
+        if (debug) out << "\\\\ \n";
+
+        if (ns > 1e5) {
+            return ns;
+        }
+
         ns++;
     }
 
@@ -148,9 +191,8 @@ uint Engine::run(bool gui, uint slp_t) {
  * Have the update the position and velocity based on the agent's requested
  * acceleration
  */
-void Engine::move(const double reward, const bool terminal) {
+void Engine::move(const double reward, const bool terminal, bool debug) {
 
-    bool debug = false;
 
     Point pos = pos_lst.back();
     Point vel = vel_lst.back();
@@ -197,7 +239,7 @@ int Engine::range(int arg, int n1, int n2) {
 
 }
 
-void Engine::update_start(){
+void Engine::update_start() {
     start_pos.clear();
     for (uint i = 0; i < rt->world_vec.size(); i++) {
         for (uint j = 0; j < rt->world_vec[i].size(); j++) {

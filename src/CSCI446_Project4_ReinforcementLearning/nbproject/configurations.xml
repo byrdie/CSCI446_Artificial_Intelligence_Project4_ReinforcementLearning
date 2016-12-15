@@ -9,7 +9,6 @@
       <itemPath>engine.h</itemPath>
       <itemPath>main.h</itemPath>
       <itemPath>qt_world.h</itemPath>
-      <itemPath>rand_agent.h</itemPath>
       <itemPath>record.h</itemPath>
       <itemPath>typedef.h</itemPath>
       <itemPath>value_it.h</itemPath>
@@ -80,10 +79,6 @@
       </item>
       <item path="qt_world.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="rand_agent.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="rand_agent.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="record.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="typedef.cpp" ex="false" tool="1" flavor2="0">
@@ -142,10 +137,6 @@
       <item path="qt_world.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="qt_world.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="rand_agent.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="rand_agent.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="record.h" ex="false" tool="3" flavor2="0">
       </item>

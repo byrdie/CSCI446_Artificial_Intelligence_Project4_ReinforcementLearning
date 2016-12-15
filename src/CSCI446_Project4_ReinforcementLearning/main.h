@@ -17,6 +17,7 @@
 
 void init_rand(unsigned long int seed);
 unsigned long int init_rand();
+void q_sample_runs();
 
 #endif /* MAIN_H */
 

@@ -6,9 +6,9 @@
 
 /* 
  * File:   record.h
- * Author: girish
+ * Author: byrdie
  *
- * Created on December 12, 2016, 4:07 PM
+ * Created on October 26, 2016, 9:33 PM
  */
 
 #ifndef RECORD_H
@@ -39,3 +39,4 @@ record& operator<<(record& strm, const T& var) {
 };
 
 #endif /* RECORD_H */
+
